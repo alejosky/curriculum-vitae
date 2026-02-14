@@ -35,7 +35,6 @@ class CvWorkEntry extends HTMLElement {
       this.getAttribute("certificate-text") || "See certificate";
     const visitWebsiteText =
       this.getAttribute("visit-website-text") || "Visit website";
-    const isBreak = this.getAttribute("entry-type") === "break";
 
     const descriptionList = description
       ? description.split("|").filter((d) => d.trim())
@@ -45,7 +44,7 @@ class CvWorkEntry extends HTMLElement {
       : [];
 
     let certificateButton = "";
-    if (certificatePath && !isBreak) {
+    if (certificatePath) {
       certificateButton = `
         <a href="${certificatePath}" target="_blank" rel="noopener noreferrer" class="action-link no-print">
           <span class="action-icon">📄</span>
@@ -55,7 +54,7 @@ class CvWorkEntry extends HTMLElement {
     }
 
     let websiteButton = "";
-    if (companyUrl && !isBreak) {
+    if (companyUrl) {
       websiteButton = `
         <a href="${companyUrl}" target="_blank" rel="noopener noreferrer" class="action-link no-print">
           <span class="action-icon">🔗</span>
@@ -73,10 +72,6 @@ class CvWorkEntry extends HTMLElement {
 
         .work-entry {
           position: relative;
-        }
-
-        .work-entry.break {
-          padding: 0.5rem 0;
         }
 
         .entry-header {
@@ -103,10 +98,6 @@ class CvWorkEntry extends HTMLElement {
           font-size: 1rem;
           margin: 0;
           color: var(--text-primary, #000);
-        }
-
-        .company.break {
-          font-style: italic;
         }
 
         .location-role {
@@ -193,15 +184,15 @@ class CvWorkEntry extends HTMLElement {
         }
       </style>
 
-      <div class="work-entry ${isBreak ? "break" : ""}">
+      <div class="work-entry">
         <div class="entry-header">
           <div class="entry-title">
-            <h3 class="company ${isBreak ? "break" : ""}">${company}</h3>
+            <h3 class="company">${company}</h3>
           </div>
           <span class="period">${period}</span>
         </div>
         ${
-          !isBreak && (location || role)
+          location || role
             ? `
           <div class="location-role">
             ${location ? `<span class="location">${location}</span>` : ""}
@@ -211,7 +202,7 @@ class CvWorkEntry extends HTMLElement {
             : ""
         }
         ${
-          !isBreak && descriptionList.length > 0
+          descriptionList.length > 0
             ? `
           <div class="description">
             <ul class="description-list">
@@ -222,7 +213,7 @@ class CvWorkEntry extends HTMLElement {
             : ""
         }
         ${
-          !isBreak && techList.length > 0
+          techList.length > 0
             ? `
           <div class="technologies">
             <strong>Technologies:</strong> ${techList.join(", ")}
