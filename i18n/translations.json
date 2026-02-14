@@ -37,7 +37,12 @@
       "methodologies": "Furthermore"
     },
     "driverLicense": "A & B Driver licence",
-    "intro": "Professional Summary"
+    "intro": "Professional Summary",
+    "theme": "Theme",
+    "themeAuto": "Auto",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "visitWebsite": "Visit website"
   },
   "de": {
     "title": "Lebenslauf",
@@ -77,7 +82,12 @@
       "methodologies": "Außerdem"
     },
     "driverLicense": "Führerschein A & B",
-    "intro": "Berufliche Zusammenfassung"
+    "intro": "Berufliche Zusammenfassung",
+    "theme": "Thema",
+    "themeAuto": "Auto",
+    "themeLight": "Hell",
+    "themeDark": "Dunkel",
+    "visitWebsite": "Website besuchen"
   },
   "es": {
     "title": "Currículum Vítae",
@@ -117,6 +127,11 @@
       "methodologies": "Además"
     },
     "driverLicense": "Licencia de conducir A & B",
-    "intro": "Resumen Profesional"
+    "intro": "Resumen Profesional",
+    "theme": "Tema",
+    "themeAuto": "Auto",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "visitWebsite": "Visitar sitio web"
   }
 }

@@ -2,10 +2,64 @@
 let cvData = null;
 let translations = null;
 let currentLang = localStorage.getItem("cv-lang") || "en";
+let currentTheme = localStorage.getItem("cv-theme") || "auto";
+
+// Detect and apply system theme
+function detectSystemTheme() {
+  return window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+// Apply theme
+function applyTheme(theme) {
+  if (theme === "auto") {
+    const systemTheme = detectSystemTheme();
+    document.body.setAttribute("data-theme", systemTheme);
+  } else {
+    document.body.setAttribute("data-theme", theme);
+  }
+}
+
+// Setup theme switcher
+function setupThemeSwitcher() {
+  const themeButtons = document.querySelectorAll(".theme-btn");
+
+  themeButtons.forEach((btn) => {
+    if (btn.dataset.theme === currentTheme) {
+      btn.classList.add("active");
+    }
+
+    btn.addEventListener("click", () => {
+      currentTheme = btn.dataset.theme;
+      localStorage.setItem("cv-theme", currentTheme);
+
+      themeButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      applyTheme(currentTheme);
+    });
+  });
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (currentTheme === "auto") {
+          applyTheme("auto");
+        }
+      });
+  }
+}
 
 // Load data and initialize app
 async function init() {
   try {
+    // Apply theme immediately
+    applyTheme(currentTheme);
+
     // Load CV data and translations
     const [cvResponse, translationsResponse] = await Promise.all([
       fetch("data/cv-data.json"),
@@ -17,6 +71,9 @@ async function init() {
 
     // Set up language switcher
     setupLanguageSwitcher();
+
+    // Set up theme switcher
+    setupThemeSwitcher();
 
     // Render all sections
     renderPersonalInfo();
@@ -103,7 +160,8 @@ function renderPersonalInfo() {
 
   document.getElementById("addressLine1").textContent = personal.address;
   document.getElementById("addressLine2").textContent = personal.city;
-  document.getElementById("phone").textContent = personal.phone;
+  document.getElementById("phone").innerHTML =
+    `<a href="tel:${personal.phone}">${personal.phone}</a>`;
   document.getElementById("email").innerHTML =
     `<a href="mailto:${personal.email}">${personal.email}</a>`;
 
@@ -119,7 +177,8 @@ function renderPersonalInfo() {
   document.getElementById("introText").textContent = personal.intro;
 
   document.getElementById("signatureName").textContent = personal.name;
-  document.getElementById("signatureYear").textContent = "— 2025";
+  document.getElementById("signatureYear").textContent =
+    `— ${new Date().getFullYear()}`;
 }
 
 // Get ordinal suffix for dates
@@ -157,9 +216,14 @@ function renderWorkExperience() {
     entry.setAttribute("technologies", job.technologies.join(","));
     entry.setAttribute("entry-type", job.type);
     entry.setAttribute("certificate-text", t("seeCertificate"));
+    entry.setAttribute("visit-website-text", t("visitWebsite"));
 
     if (job.certificatePath) {
       entry.setAttribute("certificate-path", job.certificatePath);
+    }
+
+    if (job.companyUrl) {
+      entry.setAttribute("company-url", job.companyUrl);
     }
 
     container.appendChild(entry);

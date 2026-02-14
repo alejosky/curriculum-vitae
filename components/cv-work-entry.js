@@ -9,11 +9,14 @@ class CvWorkEntry extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["certificate-text"];
+    return ["certificate-text", "visit-website-text"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "certificate-text" && oldValue !== newValue) {
+    if (
+      (name === "certificate-text" || name === "visit-website-text") &&
+      oldValue !== newValue
+    ) {
       this.render();
     }
   }
@@ -27,8 +30,11 @@ class CvWorkEntry extends HTMLElement {
     const description = this.getAttribute("description") || "";
     const technologies = this.getAttribute("technologies") || "";
     const certificatePath = this.getAttribute("certificate-path");
+    const companyUrl = this.getAttribute("company-url");
     const certificateText =
       this.getAttribute("certificate-text") || "See certificate";
+    const visitWebsiteText =
+      this.getAttribute("visit-website-text") || "Visit website";
     const isBreak = this.getAttribute("entry-type") === "break";
 
     const descriptionList = description
@@ -41,9 +47,19 @@ class CvWorkEntry extends HTMLElement {
     let certificateButton = "";
     if (certificatePath && !isBreak) {
       certificateButton = `
-        <a href="${certificatePath}" target="_blank" rel="noopener noreferrer" class="certificate-link no-print">
-          <span class="certificate-icon">📄</span>
-          <span class="certificate-text">${certificateText}</span>
+        <a href="${certificatePath}" target="_blank" rel="noopener noreferrer" class="action-link no-print">
+          <span class="action-icon">📄</span>
+          <span class="action-text">${certificateText}</span>
+        </a>
+      `;
+    }
+
+    let websiteButton = "";
+    if (companyUrl && !isBreak) {
+      websiteButton = `
+        <a href="${companyUrl}" target="_blank" rel="noopener noreferrer" class="action-link no-print">
+          <span class="action-icon">🔗</span>
+          <span class="action-text">${visitWebsiteText}</span>
         </a>
       `;
     }
@@ -77,7 +93,7 @@ class CvWorkEntry extends HTMLElement {
 
         .period {
           font-size: 0.9rem;
-          color: #666;
+          color: var(--text-tertiary, #666);
           white-space: nowrap;
           margin-left: auto;
         }
@@ -86,7 +102,7 @@ class CvWorkEntry extends HTMLElement {
           font-weight: 600;
           font-size: 1rem;
           margin: 0;
-          color: #000;
+          color: var(--text-primary, #000);
         }
 
         .company.break {
@@ -97,22 +113,22 @@ class CvWorkEntry extends HTMLElement {
           display: flex;
           gap: 0.5rem;
           font-size: 0.9rem;
-          color: #666;
+          color: var(--text-tertiary, #666);
           margin: 0.25rem 0;
         }
 
         .location {
-          color: #555;
+          color: var(--text-secondary, #555);
         }
 
         .role {
-          color: #333;
+          color: var(--text-primary, #333);
         }
 
         .type-badge {
           display: inline-block;
           padding: 0.125rem 0.5rem;
-          background: #f0f0f0;
+          background: var(--bg-sidebar, #f0f0f0);
           border-radius: 3px;
           font-size: 0.8rem;
           margin-left: 0.5rem;
@@ -137,36 +153,42 @@ class CvWorkEntry extends HTMLElement {
         .technologies {
           margin-top: 0.5rem;
           font-size: 0.85rem;
-          color: #666;
+          color: var(--text-tertiary, #666);
         }
 
-        .certificate-link {
+        .action-links {
+          display: flex;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .action-link {
           display: inline-flex;
           align-items: center;
           gap: 0.25rem;
           text-decoration: none;
-          color: #666;
+          color: var(--text-tertiary, #666);
           font-size: 0.85rem;
           padding: 0.25rem 0.5rem;
           border-radius: 3px;
           transition: all 0.2s ease;
-          margin-top: 0.5rem;
-          border: 1px solid #ddd;
-          background: #fafafa;
+          border: 1px solid var(--border-color, #ddd);
+          background: var(--bg-sidebar, #fafafa);
         }
 
-        .certificate-link:hover {
-          background: #f0f0f0;
-          color: #333;
-          border-color: #bbb;
+        .action-link:hover {
+          background: var(--bg-primary, #f0f0f0);
+          color: var(--text-primary, #333);
+          border-color: var(--text-tertiary, #bbb);
         }
 
-        .certificate-icon {
+        .action-icon {
           font-size: 1rem;
           line-height: 1;
         }
 
-        .certificate-text {
+        .action-text {
           line-height: 1;
         }
       </style>
@@ -208,7 +230,16 @@ class CvWorkEntry extends HTMLElement {
         `
             : ""
         }
-        ${certificateButton}
+        ${
+          certificateButton || websiteButton
+            ? `
+          <div class="action-links">
+            ${websiteButton}
+            ${certificateButton}
+          </div>
+        `
+            : ""
+        }
       </div>
     `;
 
