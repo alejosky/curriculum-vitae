@@ -11,7 +11,7 @@
     "address": "***REMOVED***",
     "city": "6020 Innsbruck",
     "phone": "***REMOVED***",
-    "email": "hirsch96@hotmail.com",
+    "email": "hirsch.alejo@gmail.com",
     "linkedin": "LinkedIn",
     "linkedinUrl": "https://linkedin.com/in/alejandro-hirsch",
     "quote": "My skills bring your ideas into the virtual world!",
@@ -50,8 +50,8 @@
       "companyUrl": "https://www.pixelart.at"
     },
     {
-      "id": "predmansky",
-      "company": "Predmansky",
+      "id": "fredmansky",
+      "company": "Fredmansky",
       "period": "08/2022 — 09/2022",
       "location": "Linz, Austria",
       "role": "Frontend web developer",
@@ -64,7 +64,7 @@
       "technologies": ["Vue.js", "JavaScript"],
       "visible": true,
       "certificatePath": null,
-      "companyUrl": "https://www.predmansky.com"
+      "companyUrl": "https://www.fredmansky.com"
     },
     {
       "id": "monkee",
