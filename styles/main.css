@@ -44,6 +44,12 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
 /* Floating controls */
 .floating-controls {
   position: fixed;
@@ -115,6 +121,7 @@ body {
 
 /* Left column */
 .left-column {
+  text-align: right;
   background: var(--bg-sidebar);
   padding: 2rem 1.5rem;
   border-right: 1px solid var(--border-color);
