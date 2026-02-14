@@ -50,15 +50,23 @@
     {
       "id": "altagama",
       "company": "alta gama",
-      "period": "04/2022 — ",
-      "location": "",
-      "role": "",
+      "period": "04/2023 — ",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Independent, frontend web developer",
+        "de": "Unabhängiger Frontend-Webentwickler",
+        "es": "Desarrollador web frontend independiente"
+      },
       "type": "",
       "description": [],
       "technologies": [],
       "visible": true,
       "certificatePath": null,
-      "companyUrl": null
+      "companyUrl": "https://altagama.com"
     },
     {
       "id": "pixelart",
