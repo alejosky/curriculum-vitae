@@ -142,6 +142,11 @@ hr {
   box-shadow: 0 2px 8px var(--shadow-color);
 }
 
+/* Personal name heading */
+#cvName {
+  font-size: 2rem;
+}
+
 .personal-section h2,
 .languages-section h2,
 .interests-section h2 {
@@ -204,6 +209,7 @@ hr {
 
 .language-level {
   color: var(--text-tertiary);
+  padding-bottom: 0.5rem;
 }
 
 .interests-section ul {
@@ -278,6 +284,9 @@ hr {
   font-weight: 500;
   background: #bdbdbd;
   border-radius: 0;
+  padding-left: 2.4rem;
+  margin-left: -2.5rem;
+  margin-right: -2.5rem;
 }
 
 body[data-theme="dark"] .intro-section h2,
