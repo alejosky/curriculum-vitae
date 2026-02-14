@@ -251,7 +251,7 @@
       "technologies": ["React", "UML"],
       "visible": true,
       "certificatePath": "documents/HIRSCH A Styletronic DZ.pdf",
-      "companyUrl": null
+      "companyUrl": "https://www.styletronic.at/landing/"
     },
     {
       "id": "innio",
@@ -292,7 +292,7 @@
     },
     {
       "id": "admorris",
-      "company": "ad.morris",
+      "company": "ad:morris",
       "period": "07/2016 — 11/2018",
       "location": {
         "en": "Innsbruck, Austria",

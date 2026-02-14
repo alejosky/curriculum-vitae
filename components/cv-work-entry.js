@@ -161,10 +161,9 @@ class CvWorkEntry extends HTMLElement {
           text-decoration: none;
           color: var(--text-tertiary, #666);
           font-size: 0.85rem;
-          padding: 0.25rem 0.5rem;
+          padding: 0.333rem 0.5rem;
           border-radius: 3px;
           transition: all 0.2s ease;
-          border: 1px solid var(--border-color, #ddd);
           background: var(--bg-sidebar, #fafafa);
         }
 
