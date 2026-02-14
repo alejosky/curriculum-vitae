@@ -1,0 +1,244 @@
+{
+  "personal": {
+    "name": "Alejandro Hirsch",
+    "title": "Web Developer",
+    "photo": "assets/10422442_10152627101037855_1110754441375811719_n (2).jpg",
+    "birthDate": "1984-10-22",
+    "birthPlace": "Medellín, Colombia",
+    "nationality": "Austrian",
+    "maritalStatus": "single",
+    "children": "no children",
+    "address": "Mitterweg 96",
+    "city": "6020 Innsbruck",
+    "phone": "+43 660 3870827",
+    "email": "hirsch96@hotmail.com",
+    "linkedin": "LinkedIn",
+    "linkedinUrl": "https://linkedin.com/in/alejandro-hirsch",
+    "quote": "My skills bring your ideas into the virtual world!",
+    "quoteAuthor": "Alejandro Hirsch",
+    "intro": "Experienced web developer with over 10 years in frontend development, specializing in modern JavaScript frameworks and e-commerce solutions. Proven track record of delivering high-quality web applications across diverse industries including fintech, e-commerce, and enterprise solutions. Strong expertise in Vue.js, React, and TypeScript, with a passion for clean code and best practices."
+  },
+  "workExperience": [
+    {
+      "id": "world-travels",
+      "company": "World travels",
+      "period": "04/2023 — 03/2024",
+      "location": "",
+      "role": "",
+      "type": "break",
+      "description": [],
+      "technologies": [],
+      "visible": true,
+      "certificatePath": null
+    },
+    {
+      "id": "pixelart",
+      "company": "Pixelart",
+      "period": "02/2023 — 09/2023",
+      "location": "Salzburg, Austria",
+      "role": "Frontend web developer",
+      "type": "remote",
+      "description": [
+        "Implementation of frontend pages in Pimcore (Twig) and Vue",
+        "Development of frontend components with Vue and JavaScript",
+        "Collaboration in agile team environment"
+      ],
+      "technologies": ["Pimcore", "Vue.js", "Twig", "JavaScript"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Pixelart DZ.pdf"
+    },
+    {
+      "id": "predmansky",
+      "company": "Predmansky",
+      "period": "08/2022 — 09/2022",
+      "location": "Linz, Austria",
+      "role": "Frontend web developer",
+      "type": "remote",
+      "description": [
+        "Implementation of frontend components with Vue and JavaScript",
+        "Code optimization and refactoring",
+        "Integration with backend APIs"
+      ],
+      "technologies": ["Vue.js", "JavaScript"],
+      "visible": true,
+      "certificatePath": null
+    },
+    {
+      "id": "monkee",
+      "company": "Monkee Rocks",
+      "period": "06/2021 — 03/2022",
+      "location": "Innsbruck, Austria",
+      "role": "Frontend web developer",
+      "type": "onsite",
+      "description": [
+        "Full frontend implementation in React, and testing with Cypress for a finance coaching portal",
+        "Improvement and additions to the company's WordPress website",
+        "Agile development with Scrum methodology"
+      ],
+      "technologies": ["React", "Cypress", "WordPress", "Scrum"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Monkee DZ.pdf"
+    },
+    {
+      "id": "p8",
+      "company": "P8 Marketing",
+      "period": "02/2021 — 06/2021",
+      "location": "Innsbruck, Austria",
+      "role": "Frontend web developer",
+      "type": "onsite",
+      "description": [
+        "Full implementation of WordPress-based headless themes with Vue",
+        "Custom plugin development and theme customization",
+        "Client communication and requirement analysis"
+      ],
+      "technologies": ["WordPress", "Vue.js", "PHP"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A P8 DZ.pdf"
+    },
+    {
+      "id": "styletronic",
+      "company": "Styletronic",
+      "period": "09/2020 — 11/2020",
+      "location": "Innsbruck, Austria",
+      "role": "Frontend web developer",
+      "type": "onsite",
+      "description": [
+        "Implementation of UI elements with React",
+        "Creation of UML diagrams for the project's architecture",
+        "Technical documentation"
+      ],
+      "technologies": ["React", "UML"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Styletronic DZ.pdf"
+    },
+    {
+      "id": "innio",
+      "company": "INNIO",
+      "period": "08/2019 — 04/2020",
+      "location": "Jenbach, Austria",
+      "role": "Consultant, web developer",
+      "type": "onsite",
+      "description": [
+        "Development, upgrade, debugging and migration of web portals",
+        "Onsite support with Laptop client rollout in Mexico",
+        "Technical consulting and troubleshooting"
+      ],
+      "technologies": ["Web Development", "System Migration"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A INNIO DZ.pdf"
+    },
+    {
+      "id": "admorris",
+      "company": "ad.morris",
+      "period": "07/2016 — 11/2018",
+      "location": "Innsbruck, Austria",
+      "role": "Web developer",
+      "type": "onsite",
+      "description": [
+        "Development, debugging, fine-tuning and migration of websites",
+        "Full-stack web development with various technologies",
+        "Client project management and support"
+      ],
+      "technologies": ["Full Stack", "Web Development"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A admorris DZ.pdf"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universität Innsbruck",
+      "period": "11/2011 — 01/2017",
+      "location": "Innsbruck, Austria",
+      "degree": "BSc Computer Science",
+      "status": "not finished"
+    },
+    {
+      "institution": "Compeustudio",
+      "period": "02/2000 — 11/2002",
+      "location": "Colombia",
+      "degree": "High-school diploma",
+      "status": "completed"
+    },
+    {
+      "institution": "INEM \"José Félix de Restrepo\"",
+      "period": "02/1996 — 11/1999",
+      "location": "Colombia",
+      "degree": "High-school",
+      "status": "completed"
+    }
+  ],
+  "skills": {
+    "programmingLanguages": [
+      { "name": "JavaScript", "level": 5, "levelLabel": "Expert" },
+      { "name": "CSS", "level": 5, "levelLabel": "Expert" },
+      { "name": "HTML", "level": 5, "levelLabel": "Expert" },
+      { "name": "PHP", "level": 4, "levelLabel": "Advanced" },
+      { "name": "SQL", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Java", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "C", "level": 2, "levelLabel": "Basic" }
+    ],
+    "frameworks": [
+      { "name": "Vue.js", "level": 5, "levelLabel": "Expert" },
+      { "name": "React", "level": 5, "levelLabel": "Expert" },
+      { "name": "Next.js", "level": 4, "levelLabel": "Advanced" },
+      { "name": "WordPress", "level": 5, "levelLabel": "Expert" },
+      { "name": "TypeScript", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Sass", "level": 5, "levelLabel": "Expert" },
+      { "name": "Axios", "level": 5, "levelLabel": "Expert" },
+      { "name": "Styled Components", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Tailwindcss", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Bootstrap", "level": 5, "levelLabel": "Expert" },
+      { "name": "Font Awesome", "level": 5, "levelLabel": "Expert" },
+      { "name": "Webpack", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Babel", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Laravel", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "JTL", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "jQuery", "level": 5, "levelLabel": "Expert" }
+    ],
+    "developmentTools": [
+      { "name": "Git", "level": 5, "levelLabel": "Expert" },
+      { "name": "Prettier", "level": 5, "levelLabel": "Expert" },
+      { "name": "ESLint", "level": 5, "levelLabel": "Expert" },
+      { "name": "Stylelint", "level": 5, "levelLabel": "Expert" },
+      { "name": "Husky", "level": 4, "levelLabel": "Advanced" },
+      { "name": "CommitLint", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Cypress", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Jira/Atlassian", "level": 4, "levelLabel": "Advanced" }
+    ],
+    "otherTools": [
+      { "name": "Windows", "level": 5, "levelLabel": "Expert" },
+      { "name": "Linux", "level": 4, "levelLabel": "Advanced" },
+      { "name": "VS Code", "level": 5, "levelLabel": "Expert" },
+      { "name": "Chrome devTools", "level": 5, "levelLabel": "Expert" },
+      { "name": "Eclipse", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "Bash", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Powershell", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "Node.js", "level": 5, "levelLabel": "Expert" },
+      { "name": "Docker", "level": 3, "levelLabel": "Intermediate" },
+      { "name": "phpMyAdmin", "level": 4, "levelLabel": "Advanced" }
+    ],
+    "methodologies": [
+      { "name": "OOP", "level": 5, "levelLabel": "Expert" },
+      { "name": "REST API", "level": 5, "levelLabel": "Expert" },
+      { "name": "Design Patterns", "level": 4, "levelLabel": "Advanced" },
+      { "name": "Coding Best Practices", "level": 5, "levelLabel": "Expert" },
+      { "name": "CI/CD", "level": 4, "levelLabel": "Advanced" },
+      { "name": "SEO", "level": 4, "levelLabel": "Advanced" },
+      { "name": "PWA", "level": 4, "levelLabel": "Advanced" },
+      { "name": "SPA", "level": 5, "levelLabel": "Expert" },
+      { "name": "UML", "level": 4, "levelLabel": "Advanced" }
+    ]
+  },
+  "languages": [
+    { "name": "German", "level": "C1", "label": "advanced" },
+    { "name": "English", "level": "C1", "label": "advanced" },
+    { "name": "Spanish", "level": "Native", "label": "Mother Language" }
+  ],
+  "interests": [
+    "Gliding (glider pilot licence)",
+    "Motorcycles",
+    "Travel",
+    "Gastronomy"
+  ],
+  "driverLicense": "A & B Driver licence"
+}
