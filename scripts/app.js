@@ -209,9 +209,10 @@ function renderPersonalInfo() {
 
   document.getElementById("driverLicense").textContent = driverLicense;
 
-  const quote = typeof personal.quote === "object"
-    ? personal.quote[currentLang] || personal.quote["en"] || ""
-    : personal.quote;
+  const quote =
+    typeof personal.quote === "object"
+      ? personal.quote[currentLang] || personal.quote["en"] || ""
+      : personal.quote;
   document.getElementById("quote").textContent = `"${quote}"`;
   document.getElementById("quoteAuthor").textContent =
     `— ${personal.quoteAuthor}`;
