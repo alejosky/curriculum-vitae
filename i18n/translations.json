@@ -1,6 +1,5 @@
 {
   "en": {
-    "title": "Curriculum Vitae",
     "personalInfo": "Personal Information",
     "workExperience": "Work Experience",
     "education": "Education",
@@ -45,7 +44,6 @@
     "visitWebsite": "Visit website"
   },
   "de": {
-    "title": "Lebenslauf",
     "personalInfo": "Persönliche Informationen",
     "workExperience": "Berufserfahrung",
     "education": "Ausbildung",
@@ -90,7 +88,6 @@
     "visitWebsite": "Website besuchen"
   },
   "es": {
-    "title": "Currículum Vítae",
     "personalInfo": "Información Personal",
     "workExperience": "Experiencia Laboral",
     "education": "Educación",
