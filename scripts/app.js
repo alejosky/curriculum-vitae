@@ -353,7 +353,7 @@ function renderSkills() {
       skillName.className = "skill-name";
       skillName.textContent = skill.name;
 
-      const stars = createStarRating(skill.level, skill.levelLabel);
+      const stars = createStarRating(skill.level);
 
       skillItem.appendChild(skillName);
       skillItem.appendChild(stars);
@@ -366,10 +366,23 @@ function renderSkills() {
 }
 
 // Create star rating with hover label
-function createStarRating(level, label) {
+function createStarRating(level) {
+  // Map level number to label
+  const getLevelLabel = (level) => {
+    const levelLabels = {
+      1: "basic",
+      2: "basic",
+      3: "intermediate",
+      4: "advanced",
+      5: "expert",
+    };
+    return levelLabels[level] || "basic";
+  };
+
+  const label = getLevelLabel(level);
   const container = document.createElement("span");
   container.className = "star-rating";
-  container.setAttribute("title", t("skillLevels." + label.toLowerCase()));
+  container.setAttribute("title", t("skillLevels." + label));
 
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement("span");

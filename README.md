@@ -146,12 +146,16 @@ Skills are organized by category with 1-5 star ratings:
 ```json
 {
   "name": "JavaScript",
-  "level": 5,
-  "levelLabel": "Expert"
+  "level": 5
 }
 ```
 
-**Level labels**: Basic, Intermediate, Advanced, Expert, Master
+**Level mapping**: Level numbers automatically map to labels:
+
+- 1-2: Basic
+- 3: Intermediate
+- 4: Advanced
+- 5: Expert
 
 #### Add Translations
 
