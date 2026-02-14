@@ -1,0 +1,209 @@
+/* Print styles for PDF export */
+@media print {
+
+  /* Hide non-printable elements */
+  .no-print,
+  .controls-bar {
+    display: none !important;
+  }
+
+  /* Reset page styles */
+  body {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* A4 page setup */
+  @page {
+    size: A4;
+    margin: 1.5cm 1cm;
+  }
+
+  /* Container adjustments */
+  .cv-container {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    min-height: auto;
+    page-break-after: auto;
+  }
+
+  /* Column styles */
+  .left-column,
+  .right-column {
+    padding: 0.5cm;
+  }
+
+  .left-column {
+    background: #f8f8f8;
+    border-right: 1px solid #ddd;
+  }
+
+  /* Prevent page breaks inside elements */
+  .work-entry,
+  .education-entry,
+  .skill-category,
+  .personal-section,
+  .quote-section,
+  .languages-section,
+  .interests-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Photo adjustments */
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Typography adjustments for print */
+  body {
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  h1 {
+    font-size: 24pt;
+  }
+
+  h2 {
+    font-size: 12pt;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 11pt;
+    page-break-after: avoid;
+  }
+
+  /* Links */
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* Ensure colors print */
+  .quote-section,
+  .left-column,
+  .star.filled {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Star ratings */
+  .star-rating {
+    display: inline-flex;
+  }
+
+  .star {
+    font-size: 9pt;
+  }
+
+  /* Skills grid adjustments */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3cm 0.5cm;
+  }
+
+  /* Reduce spacing for print */
+  .intro-section,
+  .work-section,
+  .education-section,
+  .skills-section {
+    margin-bottom: 0.6cm;
+  }
+
+  .skill-category {
+    margin-bottom: 0.5cm;
+  }
+
+  .personal-section h2,
+  .languages-section h2,
+  .interests-section h2,
+  .intro-section h2,
+  .work-section h2,
+  .education-section h2,
+  .skills-section h2 {
+    margin-bottom: 0.4cm;
+    padding-bottom: 0.2cm;
+  }
+
+  /* Quote section */
+  .quote-section {
+    margin: 0.5cm 0;
+    padding: 0.4cm;
+    background: #fff !important;
+    border-left: 3px solid #333;
+  }
+
+  .quote-section blockquote {
+    font-size: 9pt;
+  }
+
+  /* Signature */
+  .signature-section {
+    margin-top: 1cm;
+    padding-top: 0.5cm;
+  }
+
+  /* Work entries spacing */
+  cv-work-entry {
+    margin-bottom: 0.5cm;
+  }
+
+  /* Education entries */
+  .education-entry {
+    margin-bottom: 0.5cm;
+  }
+
+  /* Languages and interests */
+  .language-item {
+    margin-bottom: 0.3cm;
+  }
+
+  .interests-section li {
+    padding: 0.2cm 0;
+  }
+
+  /* Prevent orphaned lines */
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Header adjustments */
+  .cv-header {
+    margin-bottom: 0.6cm;
+    page-break-after: avoid;
+  }
+
+  .cv-header h1 {
+    margin-bottom: 0.2cm;
+  }
+
+  /* Ensure proper page breaks */
+  .work-section,
+  .education-section,
+  .skills-section {
+    page-break-before: auto;
+  }
+
+  /* Allow page break before skills if needed */
+  .skills-section {
+    page-break-before: auto;
+  }
+
+  /* Personal info */
+  .personal-info p {
+    font-size: 9pt;
+    margin-bottom: 0.2cm;
+  }
+}

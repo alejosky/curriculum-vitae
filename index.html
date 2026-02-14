@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Curriculum Vitae - Alejandro Hirsch, Web Developer"
+    />
+    <meta name="author" content="Alejandro Hirsch" />
+    <title>Alejandro Hirsch - CV</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/print.css" media="print" />
+  </head>
+  <body>
+    <div class="no-print controls-bar">
+      <div class="language-selector">
+        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        <button class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+      </div>
+      <button class="print-btn" id="printBtn">
+        <span class="print-icon">🖨️</span>
+        <span data-i18n="print">Print / Download PDF</span>
+      </button>
+    </div>
+
+    <div class="cv-container">
+      <!-- Left Column -->
+      <aside class="left-column">
+        <div class="photo-section">
+          <img
+            id="profilePhoto"
+            src=""
+            alt="Alejandro Hirsch"
+            class="profile-photo"
+          />
+        </div>
+
+        <section class="personal-section">
+          <h2 id="personalInfoTitle" data-i18n="personalInfo">
+            Personal Information
+          </h2>
+          <div class="personal-info">
+            <p id="birthInfo"></p>
+            <p id="addressLine1"></p>
+            <p id="addressLine2"></p>
+            <p id="phone"></p>
+            <p id="email"></p>
+            <p id="maritalStatus"></p>
+            <p id="driverLicense"></p>
+          </div>
+        </section>
+
+        <section class="quote-section">
+          <blockquote id="quote"></blockquote>
+          <cite id="quoteAuthor"></cite>
+        </section>
+
+        <section class="languages-section">
+          <h2 data-i18n="languages">Languages</h2>
+          <div id="languagesList"></div>
+        </section>
+
+        <section class="interests-section">
+          <h2 data-i18n="interests">Interests & Hobbies</h2>
+          <ul id="interestsList"></ul>
+        </section>
+
+        <div class="signature-section">
+          <p id="signatureName"></p>
+          <p id="signatureYear"></p>
+        </div>
+      </aside>
+
+      <!-- Right Column -->
+      <main class="right-column">
+        <header class="cv-header">
+          <h1 id="cvName"></h1>
+          <p id="cvTitle" class="cv-subtitle"></p>
+        </header>
+
+        <section class="intro-section">
+          <h2 data-i18n="intro">Professional Summary</h2>
+          <p id="introText"></p>
+        </section>
+
+        <section class="work-section">
+          <h2 data-i18n="workExperience">Work Experience</h2>
+          <div id="workExperienceList"></div>
+        </section>
+
+        <section class="education-section">
+          <h2 data-i18n="education">Education</h2>
+          <div id="educationList"></div>
+        </section>
+
+        <section class="skills-section">
+          <h2 data-i18n="skills">Key Skills and Competences</h2>
+          <div id="skillsList"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="components/cv-work-entry.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+  </body>
+</html>
