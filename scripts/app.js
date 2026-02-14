@@ -158,8 +158,7 @@ function renderPersonalInfo() {
   document.getElementById("birthInfo").innerHTML =
     `<strong>${t("born")}</strong> ${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}<br>${personal.birthPlace}<br>${personal.nationality}`;
 
-  document.getElementById("addressLine1").textContent = personal.address;
-  document.getElementById("addressLine2").textContent = personal.city;
+  document.getElementById("address").innerHTML = `${personal.address}<br>${personal.city}`;
   document.getElementById("phone").innerHTML =
     `<a href="tel:${personal.phone}">${personal.phone}</a>`;
   document.getElementById("email").innerHTML =
