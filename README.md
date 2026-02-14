@@ -2,7 +2,7 @@
 
 A modern, multilingual single-page CV application built with native web technologies. No external dependencies, frameworks, or libraries required.
 
-🌐 **Live Demo**: [View CV](https://your-username.github.io/cv/)
+🌐 **Live Demo**: [View CV](https://alejosky.github.io/curriculum-vitae/)
 
 ## Features
 
@@ -66,24 +66,40 @@ cv/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/cv.git
-   cd cv
+   git clone https://github.com/alejosky/curriculum-vitae.git
+   cd curriculum-vitae
    ```
 
-2. Open `index.html` in your browser:
+2. Start a development server with hot reloading (automatically refreshes on file changes):
+
+   **Recommended: Using live-server (via npx, no installation needed)**
+
+   ```bash
+   npx live-server
+   ```
+
+   This will open your browser automatically and reload on any file change.
+
+   **Alternative: Using browser-sync**
+
+   ```bash
+   npx browser-sync start --server --files "**/*"
+   ```
+
+   **Without hot reload:**
 
    ```bash
    # Using Python 3
    python3 -m http.server 8000
 
-   # Using Node.js
+   # Using Node.js serve
    npx serve
 
    # Or simply open the file
    open index.html
    ```
 
-3. Visit `http://localhost:8000` in your browser
+3. Visit the local address shown in your terminal (e.g., `http://127.0.0.1:8080` for live-server)
 
 ### Editing Content
 
@@ -168,7 +184,7 @@ The repository includes a GitHub Actions workflow for automatic deployment.
    - Go to repository **Settings** → **Pages**
    - Under "Build and deployment", select **GitHub Actions**
 
-3. The site will be available at: `https://your-username.github.io/cv/`
+3. The site will be available at: `https://alejosky.github.io/curriculum-vitae/`
 
 ### Manual Deployment
 
