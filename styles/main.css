@@ -162,7 +162,7 @@ body {
 .quote-section {
   margin: 2rem 0;
   padding: 1.5rem 1rem;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border-left: 4px solid var(--accent-color);
   font-style: italic;
 }
@@ -265,6 +265,7 @@ body {
 }
 
 .intro-section h2,
+.intro-section h2,
 .work-section h2,
 .education-section h2,
 .skills-section h2 {
@@ -273,9 +274,24 @@ body {
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--accent-color);
   color: var(--text-primary);
   font-weight: 500;
+  background: #bdbdbd;
+  border-radius: 0;
+}
+
+body[data-theme="dark"] .intro-section h2,
+body[data-theme="dark"] .work-section h2,
+body[data-theme="dark"] .education-section h2,
+body[data-theme="dark"] .skills-section h2 {
+  background: var(--bg-secondary);
+}
+
+body[data-theme="dark"] .intro-section h2,
+body[data-theme="dark"] .work-section h2,
+body[data-theme="dark"] .education-section h2,
+body[data-theme="dark"] .skills-section h2 {
+  background: var(--bg-primary);
 }
 
 .intro-section p {
