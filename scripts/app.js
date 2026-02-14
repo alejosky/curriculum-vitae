@@ -158,7 +158,8 @@ function renderPersonalInfo() {
   document.getElementById("birthInfo").innerHTML =
     `<strong>${t("born")}</strong> ${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}<br>${personal.birthPlace}<br>${personal.nationality}`;
 
-  document.getElementById("address").innerHTML = `${personal.address}<br>${personal.city}`;
+  document.getElementById("address").innerHTML =
+    `${personal.address}<br>${personal.city}`;
   document.getElementById("phone").innerHTML =
     `<a href="tel:${personal.phone}">${personal.phone}</a>`;
   document.getElementById("email").innerHTML =
@@ -320,20 +321,19 @@ function renderLanguages() {
   container.innerHTML = "";
 
   cvData.languages.forEach((lang) => {
-    const langItem = document.createElement("div");
-    langItem.className = "language-item";
+    const dt = document.createElement("dt");
+    dt.className = "language-name";
+    dt.textContent = lang.name;
 
-    const levelText =
+    const dd = document.createElement("dd");
+    dd.className = "language-level";
+    dd.textContent =
       lang.level === "Native"
         ? t("languageLevels.native")
         : `${lang.level}, ${t("languageLevels." + lang.label)}`;
 
-    langItem.innerHTML = `
-      <span class="language-name">${lang.name}</span>
-      <span class="language-level">${levelText}</span>
-    `;
-
-    container.appendChild(langItem);
+    container.appendChild(dt);
+    container.appendChild(dd);
   });
 }
 
@@ -343,9 +343,10 @@ function renderInterests() {
   container.innerHTML = "";
 
   cvData.interests.forEach((interest) => {
-    const li = document.createElement("li");
-    li.textContent = interest;
-    container.appendChild(li);
+    const dt = document.createElement("dt");
+    dt.className = "interest-name";
+    dt.textContent = interest;
+    container.appendChild(dt);
   });
 }
 
