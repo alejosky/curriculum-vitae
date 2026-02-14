@@ -185,6 +185,8 @@ function renderPersonalInfo() {
     `<a href="tel:${personal.phone}">${personal.phone}</a>`;
   document.getElementById("email").innerHTML =
     `<a href="mailto:${personal.email}">${personal.email}</a>`;
+  document.getElementById("linkedin").innerHTML =
+    `<a href="${personal.linkedinUrl}" target="_blank" rel="noopener noreferrer">${personal.linkedin}</a>`;
 
   const maritalStatus =
     typeof personal.maritalStatus === "object"
@@ -224,8 +226,7 @@ function renderPersonalInfo() {
   document.getElementById("introText").textContent = introText + " 🤖";
 
   document.getElementById("signatureName").textContent = personal.name;
-  document.getElementById("signatureYear").textContent =
-    `— ${new Date().getFullYear()}`;
+  document.getElementById("signatureYear").textContent = new Date().getFullYear();
 }
 
 // Get ordinal suffix for dates

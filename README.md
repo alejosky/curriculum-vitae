@@ -240,8 +240,9 @@ This project is open source and available for personal and commercial use.
 ## Credits
 
 **Alejandro Hirsch** - Web Developer  
-📧 hirsch96@hotmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/alejandro-hirsch)
+🔗 [LinkedIn](https://www.linkedin.com/in/alejandro-hirsch-1b589117a/)  
+💻 [GitHub](https://github.com/alejosky)  
+📦 [Repository](https://github.com/alejosky/curriculum-vitae)
 
 ---
 
