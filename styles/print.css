@@ -12,6 +12,9 @@
   body {
     background: #fff !important;
     color: #333 !important;
+    font-family: "SF Pro Display", "SF Pro Text", system-ui, -apple-system, "Segoe UI", "Ubuntu", "Cantarell", sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
     padding: 0;
     margin: 0;
   }
@@ -22,7 +25,7 @@
     margin: 1.5cm 1cm;
   }
 
-  /* Container adjustments */
+  /* Main container */
   .cv-container {
     max-width: 100%;
     margin: 0;
@@ -31,17 +34,288 @@
     grid-template-columns: 35% 65%;
     min-height: auto;
     page-break-after: auto;
+    background: #fff;
   }
 
-  /* Column styles */
-  .left-column,
+  /* Left column */
+  .left-column {
+    text-align: right;
+    background: #f8f8f8;
+    padding: 0.5cm;
+    border-right: 1px solid #ddd;
+  }
+
+  /* Right column */
   .right-column {
     padding: 0.5cm;
   }
 
-  .left-column {
-    background: #f8f8f8;
-    border-right: 1px solid #ddd;
+  /* Photo section */
+  .photo-section {
+    margin-bottom: 1cm;
+  }
+
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Personal name heading */
+  #cvName {
+    font-size: 2rem;
+  }
+
+  .personal-section h2,
+  .languages-section h2,
+  .interests-section h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .personal-info p {
+    font-size: 9pt;
+    margin-bottom: 0.2cm;
+  }
+
+  .personal-info a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .personal-info a:hover {
+    text-decoration: underline;
+    color: #555;
+  }
+
+  .quote-section {
+    margin: 0.5cm 0;
+    padding: 0.4cm;
+    background: #fff !important;
+    border-left: 3px solid #333;
+    font-style: italic;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .quote-section blockquote {
+    font-size: 9pt;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-section cite {
+    display: block;
+    text-align: right;
+    color: #888;
+    font-style: normal;
+  }
+
+  .languages-section,
+  .interests-section {
+    margin-top: 1cm;
+  }
+
+  .language-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.3cm;
+  }
+
+  .language-name {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .language-level {
+    color: #888;
+    padding-bottom: 0.5rem;
+  }
+
+  .interests-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .interests-section li {
+    padding: 0.2cm 0 0.2cm 1rem;
+    position: relative;
+  }
+
+  .interests-section li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .signature-section {
+    margin-top: 1cm;
+    padding-top: 0.5cm;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #888;
+  }
+
+  /* CV header */
+  .cv-header {
+    margin-bottom: 0.6cm;
+    text-align: center;
+    page-break-after: avoid;
+  }
+
+  .cv-header h1 {
+    font-size: 24pt;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 0.2cm;
+  }
+
+  .cv-subtitle {
+    color: #555;
+    font-weight: 400;
+  }
+
+  .intro-section,
+  .work-section,
+  .education-section,
+  .skills-section {
+    margin-bottom: 0.6cm;
+  }
+
+  .intro-section h2,
+  .work-section h2,
+  .education-section h2,
+  .skills-section h2 {
+    font-size: 12pt;
+    line-height: 1.75;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.4cm;
+    color: #333;
+    font-weight: 500;
+    background: #bdbdbd;
+    border-radius: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: -2.5rem;
+    page-break-after: avoid;
+  }
+
+  .intro-section p {
+    text-align: justify;
+  }
+
+  /* Work experience separators */
+  cv-work-entry:not(:last-child) {
+    border-bottom: 2px dotted #ddd;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0 !important;
+  }
+
+  cv-work-entry:not(:first-child) {
+    padding-top: 1.5rem;
+  }
+
+  /* Work entries spacing */
+  cv-work-entry {
+    margin-bottom: 0.5cm;
+  }
+
+  /* Education styles */
+  .education-entry {
+    margin-bottom: 0.5cm;
+  }
+
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .institution {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+
+  .education-entry .period {
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .degree {
+    color: #888;
+    margin: 0;
+  }
+
+  .degree-info {
+    color: #555;
+    margin-top: 0.25rem;
+  }
+
+  /* Skills section */
+  .skill-category {
+    margin-bottom: 0.5cm;
+  }
+
+  .skill-category-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3cm 0.5cm;
+  }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-name {
+    color: #555;
+  }
+
+  .star-rating {
+    display: inline-flex;
+    gap: 0.125rem;
+    cursor: help;
+  }
+
+  .star {
+    font-size: 9pt;
+    line-height: 1;
+  }
+
+  .star.filled {
+    color: #333;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .star.empty {
+    color: #888;
   }
 
   /* Prevent page breaks inside elements */
@@ -56,139 +330,11 @@
     break-inside: avoid;
   }
 
-  /* Photo adjustments */
-  .profile-photo {
-    width: 140px;
-    height: 140px;
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  /* Typography adjustments for print */
-  body {
-    font-size: 10pt;
-    line-height: 1.4;
-  }
-
-  h1 {
-    font-size: 24pt;
-  }
-
-  h2 {
-    font-size: 12pt;
-    page-break-after: avoid;
-  }
-
-  h3 {
-    font-size: 11pt;
-    page-break-after: avoid;
-  }
-
-  /* Links */
-  a {
-    color: #333;
-    text-decoration: none;
-  }
-
-  /* Ensure colors print */
-  .quote-section,
-  .left-column,
-  .star.filled {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  /* Star ratings */
-  .star-rating {
-    display: inline-flex;
-  }
-
-  .star {
-    font-size: 9pt;
-  }
-
-  /* Skills grid adjustments */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.3cm 0.5cm;
-  }
-
-  /* Reduce spacing for print */
-  .intro-section,
-  .work-section,
-  .education-section,
-  .skills-section {
-    margin-bottom: 0.6cm;
-  }
-
-  .skill-category {
-    margin-bottom: 0.5cm;
-  }
-
-  .personal-section h2,
-  .languages-section h2,
-  .interests-section h2,
-  .intro-section h2,
-  .work-section h2,
-  .education-section h2,
-  .skills-section h2 {
-    margin-bottom: 0.4cm;
-    padding-bottom: 0.2cm;
-  }
-
-  /* Quote section */
-  .quote-section {
-    margin: 0.5cm 0;
-    padding: 0.4cm;
-    background: #fff !important;
-    border-left: 3px solid #333;
-  }
-
-  .quote-section blockquote {
-    font-size: 9pt;
-  }
-
-  /* Signature */
-  .signature-section {
-    margin-top: 1cm;
-    padding-top: 0.5cm;
-  }
-
-  /* Work entries spacing */
-  cv-work-entry {
-    margin-bottom: 0.5cm;
-  }
-
-  /* Education entries */
-  .education-entry {
-    margin-bottom: 0.5cm;
-  }
-
-  /* Languages and interests */
-  .language-item {
-    margin-bottom: 0.3cm;
-  }
-
-  .interests-section li {
-    padding: 0.2cm 0;
-  }
-
   /* Prevent orphaned lines */
   p,
   li {
     orphans: 3;
     widows: 3;
-  }
-
-  /* Header adjustments */
-  .cv-header {
-    margin-bottom: 0.6cm;
-    page-break-after: avoid;
-  }
-
-  .cv-header h1 {
-    margin-bottom: 0.2cm;
   }
 
   /* Ensure proper page breaks */
@@ -201,11 +347,5 @@
   /* Allow page break before skills if needed */
   .skills-section {
     page-break-before: auto;
-  }
-
-  /* Personal info */
-  .personal-info p {
-    font-size: 9pt;
-    margin-bottom: 0.2cm;
   }
 }
