@@ -56,8 +56,8 @@
   }
 
   .profile-photo {
-    width: 140px;
-    height: 140px;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -100,24 +100,23 @@
   }
 
   .quote-section {
-    margin: 0.5cm 0;
-    padding: 0.4cm;
+    margin: 3rem 0;
+    padding: 3rem 0;
     background: #fff !important;
-    border-left: 3px solid #333;
     font-style: italic;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
 
   .quote-section blockquote {
-    font-size: 9pt;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
   }
 
   .quote-section cite {
     display: block;
     text-align: right;
-    color: #888;
+    color: #666;
     font-style: normal;
   }
 

@@ -6,6 +6,9 @@
 }
 
 :root {
+  --bg-dark: #1a1a1a;
+  --text-light: #f5f5f5;
+  
   --bg-primary: #f5f5f5;
   --bg-secondary: #fff;
   --bg-sidebar: #f8f8f8;
@@ -173,7 +176,7 @@ hr {
 }
 
 .quote-section {
-  margin: 3rem -1.4rem;
+  margin: 3rem -1.5rem;
   padding: 3rem 1.3rem;
   background: var(--bg-primary);
   font-style: italic;
@@ -270,7 +273,6 @@ hr {
 }
 
 .intro-section h2,
-.intro-section h2,
 .work-section h2,
 .education-section h2,
 .skills-section h2 {
@@ -279,27 +281,13 @@ hr {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  color: var(--text-light);
   font-weight: 500;
-  background: #bdbdbd;
+  background: var(--bg-dark);
   border-radius: 0;
   padding-left: 2.4rem;
   margin-left: -2.5rem;
   margin-right: -2.5rem;
-}
-
-body[data-theme="dark"] .intro-section h2,
-body[data-theme="dark"] .work-section h2,
-body[data-theme="dark"] .education-section h2,
-body[data-theme="dark"] .skills-section h2 {
-  background: var(--bg-secondary);
-}
-
-body[data-theme="dark"] .intro-section h2,
-body[data-theme="dark"] .work-section h2,
-body[data-theme="dark"] .education-section h2,
-body[data-theme="dark"] .skills-section h2 {
-  background: var(--bg-primary);
 }
 
 .intro-section p {
