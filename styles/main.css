@@ -114,9 +114,9 @@ hr {
 /* Main container */
 .cv-container {
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
   background: var(--bg-secondary);
-  box-shadow: 0 0 20px var(--shadow-color);
+  /* box-shadow: 0 0 20px var(--shadow-color); */
   display: grid;
   grid-template-columns: 35% 65%;
   min-height: 100vh;
@@ -125,7 +125,7 @@ hr {
 /* Left column */
 .left-column {
   text-align: right;
-  padding: 2rem 1.5rem;
+  padding: 0 1.5rem 2rem;
   border-right: 1px solid var(--border-color);
 }
 
@@ -244,12 +244,15 @@ hr {
 
 /* Right column */
 .right-column {
-  padding: 2rem 2.5rem;
+  padding: 0 2.5rem 2rem;
 }
 
 .cv-header {
-  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
   text-align: center;
+  background: var(--bg-secondary);
 }
 
 .cv-header h1 {
