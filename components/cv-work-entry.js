@@ -94,26 +94,22 @@ class CvWorkEntry extends HTMLElement {
         }
 
         .company {
+          display: inline-block;
           font-weight: 600;
           font-size: 1rem;
           margin: 0;
           color: var(--text-primary, #000);
         }
 
-        .location-role {
-          display: flex;
-          gap: 0.5rem;
-          font-size: 0.9rem;
-          color: var(--text-tertiary, #666);
-          margin: 0.25rem 0;
-        }
-
         .location {
           color: var(--text-secondary, #555);
+          font-size: 0.9rem;
+          font-style: normal;
         }
 
         .role {
           color: var(--text-primary, #333);
+          margin: 0.25rem 0;
         }
 
         .type-badge {
@@ -187,16 +183,15 @@ class CvWorkEntry extends HTMLElement {
       <div class="work-entry">
         <div class="entry-header">
           <div class="entry-title">
-            <h3 class="company">${company}</h3>
+            <h3 class="company">${company}</h3>${location ? `, <span class="location">${location}</span>` : ""}
           </div>
           <span class="period">${period}</span>
         </div>
         ${
-          location || role
+          role
             ? `
-          <div class="location-role">
-            ${location ? `<span class="location">${location}</span>` : ""}
-            ${role ? `<span class="role">${role}${type ? `<span class="type-badge">${type}</span>` : ""}</span>` : ""}
+          <div class="role">
+            ${role}${type ? `<span class="type-badge">${type}</span>` : ""}
           </div>
         `
             : ""
