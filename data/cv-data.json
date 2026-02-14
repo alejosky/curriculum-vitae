@@ -29,7 +29,8 @@
       "description": [],
       "technologies": [],
       "visible": true,
-      "certificatePath": null
+      "certificatePath": null,
+      "companyUrl": null
     },
     {
       "id": "pixelart",
@@ -45,7 +46,8 @@
       ],
       "technologies": ["Pimcore", "Vue.js", "Twig", "JavaScript"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A Pixelart DZ.pdf"
+      "certificatePath": "documents/HIRSCH A Pixelart DZ.pdf",
+      "companyUrl": "https://www.pixelart.at"
     },
     {
       "id": "predmansky",
@@ -61,7 +63,8 @@
       ],
       "technologies": ["Vue.js", "JavaScript"],
       "visible": true,
-      "certificatePath": null
+      "certificatePath": null,
+      "companyUrl": "https://www.predmansky.com"
     },
     {
       "id": "monkee",
@@ -77,7 +80,8 @@
       ],
       "technologies": ["React", "Cypress", "WordPress", "Scrum"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A Monkee DZ.pdf"
+      "certificatePath": "documents/HIRSCH A Monkee DZ.pdf",
+      "companyUrl": "https://www.monkee.rocks"
     },
     {
       "id": "p8",
@@ -93,7 +97,8 @@
       ],
       "technologies": ["WordPress", "Vue.js", "PHP"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A P8 DZ.pdf"
+      "certificatePath": "documents/HIRSCH A P8 DZ.pdf",
+      "companyUrl": "https://www.p8.eu"
     },
     {
       "id": "styletronic",
@@ -109,7 +114,8 @@
       ],
       "technologies": ["React", "UML"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A Styletronic DZ.pdf"
+      "certificatePath": "documents/HIRSCH A Styletronic DZ.pdf",
+      "companyUrl": null
     },
     {
       "id": "innio",
@@ -125,7 +131,8 @@
       ],
       "technologies": ["Web Development", "System Migration"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A INNIO DZ.pdf"
+      "certificatePath": "documents/HIRSCH A INNIO DZ.pdf",
+      "companyUrl": "https://www.innio.com"
     },
     {
       "id": "admorris",
@@ -141,7 +148,8 @@
       ],
       "technologies": ["Full Stack", "Web Development"],
       "visible": true,
-      "certificatePath": "documents/HIRSCH A admorris DZ.pdf"
+      "certificatePath": "documents/HIRSCH A admorris DZ.pdf",
+      "companyUrl": "https://www.admorris.com"
     }
   ],
   "education": [

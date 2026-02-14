@@ -13,15 +13,65 @@
     <link rel="stylesheet" href="styles/print.css" media="print" />
   </head>
   <body>
-    <div class="no-print controls-bar">
-      <div class="language-selector">
-        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
-        <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
-        <button class="lang-btn" data-lang="es" aria-label="Español">ES</button>
-      </div>
-      <button class="print-btn" id="printBtn">
-        <span class="print-icon">🖨️</span>
-        <span data-i18n="print">Print / Download PDF</span>
+    <!-- Floating vertical control tab -->
+    <div class="no-print floating-controls">
+      <button
+        class="control-btn lang-btn"
+        data-lang="en"
+        aria-label="English"
+        title="English"
+      >
+        EN
+      </button>
+      <button
+        class="control-btn lang-btn"
+        data-lang="de"
+        aria-label="Deutsch"
+        title="Deutsch"
+      >
+        DE
+      </button>
+      <button
+        class="control-btn lang-btn"
+        data-lang="es"
+        aria-label="Español"
+        title="Español"
+      >
+        ES
+      </button>
+      <div class="control-divider"></div>
+      <button
+        class="control-btn theme-btn"
+        data-theme="auto"
+        aria-label="Auto theme"
+        title="Auto"
+      >
+        🌓
+      </button>
+      <button
+        class="control-btn theme-btn"
+        data-theme="light"
+        aria-label="Light theme"
+        title="Light"
+      >
+        ☀️
+      </button>
+      <button
+        class="control-btn theme-btn"
+        data-theme="dark"
+        aria-label="Dark theme"
+        title="Dark"
+      >
+        🌙
+      </button>
+      <div class="control-divider"></div>
+      <button
+        class="control-btn print-btn"
+        id="printBtn"
+        aria-label="Print"
+        title="Print / Download PDF"
+      >
+        🖨️
       </button>
     </div>
 

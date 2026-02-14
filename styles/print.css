@@ -3,13 +3,15 @@
 
   /* Hide non-printable elements */
   .no-print,
-  .controls-bar {
+  .controls-bar,
+  .floating-controls {
     display: none !important;
   }
 
-  /* Reset page styles */
+  /* Force light theme for printing */
   body {
-    background: #fff;
+    background: #fff !important;
+    color: #333 !important;
     padding: 0;
     margin: 0;
   }
