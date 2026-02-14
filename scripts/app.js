@@ -221,7 +221,7 @@ function renderPersonalInfo() {
     typeof personal.intro === "object"
       ? personal.intro[currentLang] || personal.intro["en"] || ""
       : personal.intro;
-  document.getElementById("introText").textContent = introText;
+  document.getElementById("introText").textContent = introText + " 🤖";
 
   document.getElementById("signatureName").textContent = personal.name;
   document.getElementById("signatureYear").textContent =
