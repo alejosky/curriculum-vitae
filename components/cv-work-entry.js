@@ -9,12 +9,14 @@ class CvWorkEntry extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["certificate-text", "visit-website-text"];
+    return ["certificate-text", "visit-website-text", "technologies-label"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (
-      (name === "certificate-text" || name === "visit-website-text") &&
+      (name === "certificate-text" ||
+        name === "visit-website-text" ||
+        name === "technologies-label") &&
       oldValue !== newValue
     ) {
       this.render();
@@ -35,6 +37,8 @@ class CvWorkEntry extends HTMLElement {
       this.getAttribute("certificate-text") || "See certificate";
     const visitWebsiteText =
       this.getAttribute("visit-website-text") || "Visit website";
+    const technologiesLabel =
+      this.getAttribute("technologies-label") || "Technologies";
 
     const descriptionList = description
       ? description.split("|").filter((d) => d.trim())
@@ -211,7 +215,7 @@ class CvWorkEntry extends HTMLElement {
           techList.length > 0
             ? `
           <div class="technologies">
-            <strong>Technologies:</strong> ${techList.join(", ")}
+            <strong>${technologiesLabel}:</strong> ${techList.join(", ")}
           </div>
         `
             : ""

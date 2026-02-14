@@ -110,7 +110,12 @@ function setupLanguageSwitcher() {
       btn.classList.add("active");
 
       applyTranslations();
-      renderWorkExperience(); // Re-render to update certificate text
+      renderPersonalInfo(); // Re-render to update title and intro
+      renderWorkExperience(); // Re-render to update work experience content
+      renderEducation(); // Re-render to update education status
+      renderSkills(); // Re-render to update skill category titles and tooltips
+      renderLanguages(); // Re-render to update language level labels
+      renderInterests(); // Re-render to update interests
     });
   });
 }
@@ -127,7 +132,11 @@ function applyTranslations() {
   });
 
   // Update document title
-  document.title = `${cvData.personal.name} - ${lang.title}`;
+  const jobTitle =
+    typeof cvData.personal.title === "object"
+      ? cvData.personal.title[currentLang] || cvData.personal.title["en"] || ""
+      : cvData.personal.title;
+  document.title = `${cvData.personal.name} - ${jobTitle}`;
 }
 
 // Get translated text
@@ -148,15 +157,27 @@ function renderPersonalInfo() {
 
   document.getElementById("profilePhoto").src = personal.photo;
   document.getElementById("cvName").textContent = personal.name;
-  document.getElementById("cvTitle").textContent = personal.title;
+  document.getElementById("cvTitle").textContent =
+    typeof personal.title === "object"
+      ? personal.title[currentLang] || personal.title["en"] || ""
+      : personal.title;
 
   const birthDate = new Date(personal.birthDate);
   const birthYear = birthDate.getFullYear();
   const day = birthDate.getDate();
   const month = birthDate.toLocaleString(currentLang, { month: "long" });
 
+  const birthPlace =
+    typeof personal.birthPlace === "object"
+      ? personal.birthPlace[currentLang] || personal.birthPlace["en"] || ""
+      : personal.birthPlace;
+  const nationality =
+    typeof personal.nationality === "object"
+      ? personal.nationality[currentLang] || personal.nationality["en"] || ""
+      : personal.nationality;
+
   document.getElementById("birthInfo").innerHTML =
-    `<strong>${t("born")}</strong> ${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}<br>${personal.birthPlace}<br>${personal.nationality}`;
+    `<strong>${t("born")}</strong> ${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}<br>${birthPlace}<br>${nationality}`;
 
   document.getElementById("address").innerHTML =
     `${personal.address}<br>${personal.city}`;
@@ -165,16 +186,41 @@ function renderPersonalInfo() {
   document.getElementById("email").innerHTML =
     `<a href="mailto:${personal.email}">${personal.email}</a>`;
 
+  const maritalStatus =
+    typeof personal.maritalStatus === "object"
+      ? personal.maritalStatus[currentLang] ||
+        personal.maritalStatus["en"] ||
+        ""
+      : personal.maritalStatus;
+  const children =
+    typeof personal.children === "object"
+      ? personal.children[currentLang] || personal.children["en"] || ""
+      : personal.children;
+
   document.getElementById("maritalStatus").innerHTML =
-    `${t("single")}, ${t("noChildren")}`;
+    `${maritalStatus}, ${children}`;
 
-  document.getElementById("driverLicense").textContent = t("driverLicense");
+  const driverLicense =
+    typeof personal.driverLicense === "object"
+      ? personal.driverLicense[currentLang] ||
+        personal.driverLicense["en"] ||
+        ""
+      : personal.driverLicense;
 
-  document.getElementById("quote").textContent = `"${personal.quote}"`;
+  document.getElementById("driverLicense").textContent = driverLicense;
+
+  const quote = typeof personal.quote === "object"
+    ? personal.quote[currentLang] || personal.quote["en"] || ""
+    : personal.quote;
+  document.getElementById("quote").textContent = `"${quote}"`;
   document.getElementById("quoteAuthor").textContent =
     `— ${personal.quoteAuthor}`;
 
-  document.getElementById("introText").textContent = personal.intro;
+  const introText =
+    typeof personal.intro === "object"
+      ? personal.intro[currentLang] || personal.intro["en"] || ""
+      : personal.intro;
+  document.getElementById("introText").textContent = introText;
 
   document.getElementById("signatureName").textContent = personal.name;
   document.getElementById("signatureYear").textContent =
@@ -209,14 +255,33 @@ function renderWorkExperience() {
     const entry = document.createElement("cv-work-entry");
     entry.setAttribute("company", job.company);
     entry.setAttribute("period", job.period);
-    entry.setAttribute("location", job.location);
-    entry.setAttribute("role", job.role);
+
+    // Handle multi-language fields with fallback
+    const location =
+      typeof job.location === "object"
+        ? job.location[currentLang] || job.location["en"] || ""
+        : job.location;
+    const role =
+      typeof job.role === "object"
+        ? job.role[currentLang] || job.role["en"] || ""
+        : job.role;
+    const description =
+      typeof job.description === "object"
+        ? job.description[currentLang] || job.description["en"] || []
+        : job.description;
+
+    entry.setAttribute("location", location);
+    entry.setAttribute("role", role);
     entry.setAttribute("type", t(job.type));
-    entry.setAttribute("description", job.description.join("|"));
+    entry.setAttribute(
+      "description",
+      Array.isArray(description) ? description.join("|") : "",
+    );
     entry.setAttribute("technologies", job.technologies.join(","));
     entry.setAttribute("entry-type", job.type);
     entry.setAttribute("certificate-text", t("seeCertificate"));
     entry.setAttribute("visit-website-text", t("visitWebsite"));
+    entry.setAttribute("technologies-label", t("technologies"));
 
     if (job.certificatePath) {
       entry.setAttribute("certificate-path", job.certificatePath);
@@ -342,7 +407,12 @@ function renderInterests() {
   const container = document.getElementById("interestsList");
   container.innerHTML = "";
 
-  cvData.interests.forEach((interest) => {
+  const interests =
+    typeof cvData.interests === "object"
+      ? cvData.interests[currentLang] || cvData.interests["en"] || []
+      : cvData.interests;
+
+  interests.forEach((interest) => {
     const dt = document.createElement("dt");
     dt.className = "interest-name";
     dt.textContent = interest;

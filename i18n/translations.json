@@ -41,13 +41,14 @@
     "themeAuto": "Auto",
     "themeLight": "Light",
     "themeDark": "Dark",
-    "visitWebsite": "Visit website"
+    "visitWebsite": "Visit website",
+    "technologies": "Technologies"
   },
   "de": {
     "personalInfo": "Persönliche Informationen",
     "workExperience": "Berufserfahrung",
     "education": "Ausbildung",
-    "skills": "Wichtigste Fähigkeiten und Kompetenzen",
+    "skills": "Fähigkeiten und Kompetenzen",
     "languages": "Sprachen",
     "interests": "Interessen & Hobbys",
     "print": "Drucken / PDF herunterladen",
@@ -85,7 +86,8 @@
     "themeAuto": "Auto",
     "themeLight": "Hell",
     "themeDark": "Dunkel",
-    "visitWebsite": "Website besuchen"
+    "visitWebsite": "Website besuchen",
+    "technologies": "Technologien"
   },
   "es": {
     "personalInfo": "Información Personal",
@@ -129,6 +131,7 @@
     "themeAuto": "Auto",
     "themeLight": "Claro",
     "themeDark": "Oscuro",
-    "visitWebsite": "Visitar sitio web"
+    "visitWebsite": "Visitar sitio web",
+    "technologies": "Tecnologías"
   }
 }
