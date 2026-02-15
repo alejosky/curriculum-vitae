@@ -225,7 +225,6 @@ function renderPersonalInfo() {
       : personal.intro;
   document.getElementById("introText").textContent = introText + " 🤖";
 
-  document.getElementById("signatureName").textContent = personal.name;
   document.getElementById("signatureYear").textContent =
     new Date().getFullYear();
 }
