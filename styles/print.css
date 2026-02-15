@@ -1,5 +1,27 @@
+/* Ensure job entries are not split between pages when printing */
+cv-work-entry,
+.cv-work-entry,
+.work-entry,
+.job-entry {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  /* For extra compatibility */
+  display: block;
+}
+
 /* Print styles for PDF export */
 @media print {
+
+  /* Reduce top margin for first printed page */
+  @page :first {
+    /* margin-top: 0.75cm; */
+  }
+
+  /* Match .cv-header spacing to screen for print */
+  .cv-header {
+    margin: 0 auto;
+    padding: 0;
+  }
 
   /* Hide non-printable elements */
   .no-print,
@@ -40,7 +62,6 @@
   /* Left column */
   .left-column {
     text-align: right;
-    background: #f8f8f8;
     padding: 0.5cm;
     border-right: 1px solid #ddd;
   }
@@ -48,6 +69,11 @@
   /* Right column */
   .right-column {
     padding: 0.5cm;
+  }
+
+  .left-column,
+  .right-column {
+    padding-top: 0;
   }
 
   /* Photo section */
@@ -74,7 +100,7 @@
   .personal-section h2,
   .languages-section h2,
   .interests-section h2 {
-    font-size: 1.2rem;
+    font-size: 12pt;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 1rem;
@@ -198,12 +224,12 @@
   .education-section h2,
   .skills-section h2 {
     font-size: 12pt;
+    font-weight: 700;
     line-height: 1.75;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.4cm;
     color: #333;
-    font-weight: 500;
     background: #bdbdbd;
     border-radius: 0;
     padding-left: 0;
@@ -213,22 +239,25 @@
   }
 
   .intro-section p {
+    font-size: 9pt;
+    line-height: 1.2;
     text-align: justify;
   }
 
   /* Work experience separators */
   cv-work-entry:not(:last-child) {
     border-bottom: 2px dotted #ddd;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
     margin-bottom: 0 !important;
   }
 
   cv-work-entry:not(:first-child) {
-    padding-top: 1.5rem;
+    padding-top: 0.5rem;
   }
 
   /* Work entries spacing */
   cv-work-entry {
+    padding: 0.5;
     margin-bottom: 0.5cm;
   }
 
