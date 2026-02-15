@@ -136,7 +136,6 @@ class CvWorkEntry extends HTMLElement {
         }
 
         .description-list li {
-          margin: 0.125rem 0;
           font-size: 0.9rem;
           line-height: 1.4;
         }
@@ -180,6 +179,14 @@ class CvWorkEntry extends HTMLElement {
 
         .action-text {
           line-height: 1;
+        }
+
+        /* Print styles */
+        @media print {
+          .description-list li {
+            font-size: 9pt;
+            line-height: 1.2;
+          }
         }
       </style>
 
