@@ -332,22 +332,38 @@
     {
       "institution": "Universität Innsbruck",
       "period": "11/2011 — 01/2017",
-      "location": "Innsbruck, Austria",
-      "degree": "BSc Computer Science",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "degree": {
+        "en": "BSc Computer Science",
+        "de": "BSc Informatik",
+        "es": "Licenciatura en Informática"
+      },
       "status": "not finished"
     },
     {
       "institution": "Compeustudio",
       "period": "02/2000 — 11/2002",
       "location": "Colombia",
-      "degree": "High-school diploma",
+      "degree": {
+        "en": "High-school diploma",
+        "de": "Abitur",
+        "es": "Diploma de bachillerato"
+      },
       "status": "completed"
     },
     {
       "institution": "INEM \"José Félix de Restrepo\"",
       "period": "02/1996 — 11/1999",
       "location": "Colombia",
-      "degree": "High-school",
+      "degree": {
+        "en": "High-school",
+        "de": "Abitur",
+        "es": "Bachillerato"
+      },
       "status": "completed"
     }
   ],
