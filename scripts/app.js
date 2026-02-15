@@ -447,8 +447,57 @@ function renderInterests() {
 
 // Setup print button
 function setupPrintButton() {
-  document.getElementById("printBtn").addEventListener("click", () => {
+  const printBtn = document.getElementById("printBtn");
+
+  const doPrint = () => {
+    // Preserve original title so we can restore it after printing
+    const originalTitle = document.title;
+
+    // Determine profession/title (supporting localized object or string)
+    const jobTitle =
+      typeof cvData.personal.title === "object"
+        ? cvData.personal.title[currentLang] ||
+          cvData.personal.title["en"] ||
+          ""
+        : cvData.personal.title || "";
+
+    // Slugify: remove diacritics, lowercase, replace non-word chars with underscores
+    const slugify = (s) =>
+      s
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+
+    const year = new Date().getFullYear();
+    const slug = slugify(jobTitle) || "professional";
+    document.title = `HIRSCH_${slug}_${year}`;
+
+    // Restore the original title after the print dialog closes
+    const restoreTitle = () => {
+      document.title = originalTitle;
+      window.removeEventListener("afterprint", restoreTitle);
+    };
+
+    // Some browsers support onafterprint/afterprint event
+    window.addEventListener("afterprint", restoreTitle);
+
+    // Fallback: also restore after a delay in case afterprint isn't fired
+    setTimeout(restoreTitle, 3000);
+
     window.print();
+  };
+
+  // Button click triggers print
+  if (printBtn) printBtn.addEventListener("click", doPrint);
+
+  // Keyboard shortcut handler for Ctrl+P / Cmd+P
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key && e.key.toLowerCase() === "p") {
+      e.preventDefault();
+      doPrint();
+    }
   });
 }
 
