@@ -1,6 +1,6 @@
 # Alejandro Hirsch - CV
 
-A modern, multilingual single-page CV application built with native web technologies. No external dependencies, frameworks, or libraries required.
+A modern, multilingual single-page CV application built with native web technologies and modern tooling (Vite, pnpm). No external dependencies, frameworks, or libraries required for runtime.
 
 🌐 **Live Demo**: [View CV](https://alejosky.github.io/curriculum-vitae/)
 
@@ -15,6 +15,7 @@ A modern, multilingual single-page CV application built with native web technolo
 - 🎨 **Clean design** - Elegant typography using system fonts
 - 🚀 **Zero dependencies** - Pure HTML, CSS, and vanilla JavaScript
 - ⚙️ **Easy to maintain** - Content managed via JSON files
+- 🔧 **Modern tooling** - Vite for fast development and optimized production builds
 
 ## Technology Stack
 
@@ -22,6 +23,8 @@ A modern, multilingual single-page CV application built with native web technolo
 - **CSS3** - Grid layout, print styles
 - **JavaScript (ES6+)** - Web Components, async/await
 - **Web Components** - Custom `<cv-work-entry>` element
+- **Vite** - Fast build tool and development server
+- **pnpm** - Fast, disk space efficient package manager
 - **GitHub Actions** - Automated deployment
 - **GitHub Pages** - Free hosting with HTTPS
 
@@ -70,36 +73,32 @@ cv/
    cd curriculum-vitae
    ```
 
-2. Start a development server with hot reloading (automatically refreshes on file changes):
-
-   **Recommended: Using live-server (via npx, no installation needed)**
+2. Install dependencies:
 
    ```bash
+   pnpm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+   This will start Vite's development server with hot module reloading at `http://localhost:5173`.
+
+   **Alternative development methods (without build tools):**
+
+   ```bash
+   # Using live-server (via npx, no installation needed)
    npx live-server
-   ```
 
-   This will open your browser automatically and reload on any file change.
-
-   **Alternative: Using browser-sync**
-
-   ```bash
-   npx browser-sync start --server --files "**/*"
-   ```
-
-   **Without hot reload:**
-
-   ```bash
    # Using Python 3
    python3 -m http.server 8000
-
-   # Using Node.js serve
-   npx serve
 
    # Or simply open the file
    open index.html
    ```
-
-3. Visit the local address shown in your terminal (e.g., `http://127.0.0.1:8080` for live-server)
 
 ### Editing Content
 
@@ -172,9 +171,30 @@ Edit `i18n/translations.json` to modify or add translations for the three suppor
 
 ## Deployment
 
+### Production Build
+
+To create an optimized production build:
+
+```bash
+pnpm run build
+```
+
+This uses Vite to:
+
+- Minify and optimize all code (HTML, CSS, JavaScript)
+- Remove console logs
+- Generate optimized assets
+- Output to the `dist` folder
+
+To preview the production build locally:
+
+```bash
+pnpm run preview
+```
+
 ### GitHub Pages (Automatic)
 
-The repository includes a GitHub Actions workflow for automatic deployment.
+The repository includes a GitHub Actions workflow for automatic deployment with Vite.
 
 1. Push your changes to the `main` branch:
 
@@ -246,4 +266,4 @@ This project is open source and available for personal and commercial use.
 
 ---
 
-Built with ❤️ using native web technologies. No frameworks. No build tools. No dependencies.
+Built with ❤️ using native web technologies and modern tooling.

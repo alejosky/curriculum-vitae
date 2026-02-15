@@ -226,7 +226,8 @@ function renderPersonalInfo() {
   document.getElementById("introText").textContent = introText + " 🤖";
 
   document.getElementById("signatureName").textContent = personal.name;
-  document.getElementById("signatureYear").textContent = new Date().getFullYear();
+  document.getElementById("signatureYear").textContent =
+    new Date().getFullYear();
 }
 
 // Get ordinal suffix for dates
@@ -306,15 +307,25 @@ function renderEducation() {
     const entry = document.createElement("div");
     entry.className = "education-entry";
 
+    const location =
+      typeof edu.location === "object"
+        ? edu.location[currentLang] || edu.location["en"] || ""
+        : edu.location;
+
+    const degree =
+      typeof edu.degree === "object"
+        ? edu.degree[currentLang] || edu.degree["en"] || ""
+        : edu.degree;
+
     entry.innerHTML = `
       <div class="education-header">
         <div>
           <h3 class="institution">${edu.institution}</h3>
-          <p class="degree">${edu.location}</p>
+          <p class="degree">${location}</p>
         </div>
         <span class="period">${edu.period}</span>
       </div>
-      <p class="degree-info">${edu.degree} ${edu.status !== "completed" ? `(${t("status." + edu.status.replace(" ", ""))})` : ""}</p>
+      <p class="degree-info">${degree} ${edu.status !== "completed" ? `(${t("status." + edu.status.replace(" ", ""))})` : ""}</p>
     `;
 
     container.appendChild(entry);

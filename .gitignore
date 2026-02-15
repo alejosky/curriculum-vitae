@@ -23,6 +23,15 @@ Desktop.ini
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
 
 # Temporary files
 *.tmp
