@@ -434,7 +434,10 @@ function renderLanguages() {
   cvData.languages.forEach((lang) => {
     const dt = document.createElement("dt");
     dt.className = "language-name";
-    dt.textContent = lang.name;
+    // Translate language names if translations are available, fallback to original
+    const translatedName =
+      translations?.[currentLang]?.languageNames?.[lang.name] || lang.name;
+    dt.textContent = translatedName;
 
     const dd = document.createElement("dd");
     dd.className = "language-level";

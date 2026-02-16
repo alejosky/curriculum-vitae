@@ -28,6 +28,11 @@
       "native": "Mother Language",
       "advanced": "advanced"
     },
+    "languageNames": {
+      "German": "German",
+      "English": "English",
+      "Spanish": "Spanish"
+    },
     "categories": {
       "programmingLanguages": "Programming and markup languages",
       "frameworks": "Frameworks and libraries",
@@ -73,6 +78,11 @@
       "native": "Muttersprache",
       "advanced": "fließend"
     },
+    "languageNames": {
+      "German": "Deutsch",
+      "English": "Englisch",
+      "Spanish": "Spanisch"
+    },
     "categories": {
       "programmingLanguages": "Programmier- und Auszeichnungssprachen",
       "frameworks": "Frameworks und Bibliotheken",
@@ -117,6 +127,11 @@
     "languageLevels": {
       "native": "Lengua Materna",
       "advanced": "avanzado"
+    },
+    "languageNames": {
+      "German": "Alemán",
+      "English": "Inglés",
+      "Spanish": "Español"
     },
     "categories": {
       "programmingLanguages": "Lenguajes de programación y marcado",
