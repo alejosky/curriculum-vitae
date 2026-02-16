@@ -319,8 +319,8 @@ function renderEducation() {
     entry.innerHTML = `
       <div class="education-header">
         <div>
-          <h3 class="institution">${edu.institution}</h3>
-          <p class="degree">${location}</p>
+          <h3 class="institution">${edu.institution}</h3>, 
+          <span class="degree">${location}</span>
         </div>
         <span class="period">${edu.period}</span>
       </div>
@@ -330,14 +330,24 @@ function renderEducation() {
     const toCamelCase = (s) =>
       String(s)
         .split(/\s+/)
-        .map((w, i) => (i === 0 ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()))
+        .map((w, i) =>
+          i === 0
+            ? w.toLowerCase()
+            : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(),
+        )
         .join("");
 
     const statusKey = toCamelCase(edu.status);
-    const statusLabel = edu.status && edu.status !== "completed" ? `(${t("status." + statusKey)})` : "";
+    const statusLabel =
+      edu.status && edu.status !== "completed"
+        ? `(${t("status." + statusKey)})`
+        : "";
 
     // Replace placeholder with computed status label
-    entry.innerHTML = entry.innerHTML.replace('__STATUS_PLACEHOLDER__', statusLabel);
+    entry.innerHTML = entry.innerHTML.replace(
+      "__STATUS_PLACEHOLDER__",
+      statusLabel,
+    );
     container.appendChild(entry);
   });
 }

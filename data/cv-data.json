@@ -278,7 +278,7 @@
           "Entwicklung, Upgrade, Debugging und Migration von Webportalen",
           "Vor-Ort-Support beim Laptop-Client-Rollout in Mexiko",
           "Technische Beratung und Fehlerbehebung"
-        ],
+        ],  
         "es": [
           "Desarrollo, actualización, depuración y migración de portales web",
           "Soporte en sitio con despliegue de clientes portátiles en México",
@@ -345,9 +345,9 @@
       "status": "not finished"
     },
     {
-      "institution": "Compeustudio",
+      "institution": "Compuestudio",
       "period": "02/2000 — 11/2002",
-      "location": "Colombia",
+      "location": "Medellín, Colombia",
       "degree": {
         "en": "High-school diploma",
         "de": "Abitur",
@@ -358,7 +358,7 @@
     {
       "institution": "INEM \"José Félix de Restrepo\"",
       "period": "02/1996 — 11/1999",
-      "location": "Colombia",
+      "location": "Medellín, Colombia",
       "degree": {
         "en": "High-school",
         "de": "Abitur",
