@@ -91,7 +91,7 @@ class CvWorkEntry extends HTMLElement {
         }
 
         .period {
-          font-size: 0.9rem;
+          /* font-size: 0.9rem; */
           color: var(--text-tertiary, #666);
           white-space: nowrap;
           margin-left: auto;
@@ -100,14 +100,14 @@ class CvWorkEntry extends HTMLElement {
         .company {
           display: inline-block;
           font-weight: 600;
-          font-size: 1rem;
+          /* font-size: 1rem; */
           margin: 0;
           color: var(--text-primary, #000);
         }
 
         .location {
           color: var(--text-secondary, #555);
-          font-size: 0.9rem;
+          /* font-size: 0.9rem; */
           font-style: normal;
         }
 
@@ -121,7 +121,7 @@ class CvWorkEntry extends HTMLElement {
           padding: 0.125rem 0.5rem;
           background: var(--bg-sidebar, #f0f0f0);
           border-radius: 3px;
-          font-size: 0.8rem;
+          /* font-size: 0.8rem; */
           margin-left: 0.5rem;
         }
 
@@ -136,13 +136,13 @@ class CvWorkEntry extends HTMLElement {
         }
 
         .description-list li {
-          font-size: 0.9rem;
+          /* font-size: 0.9rem; */
           line-height: 1.4;
         }
 
         .technologies {
           margin-top: 0.5rem;
-          font-size: 0.85rem;
+          /* font-size: 0.85rem; */
           color: var(--text-tertiary, #666);
         }
 
@@ -159,7 +159,7 @@ class CvWorkEntry extends HTMLElement {
           gap: 0.25rem;
           text-decoration: none;
           color: var(--text-tertiary, #666);
-          font-size: 0.85rem;
+          /* font-size: 0.85rem; */
           padding: 0.333rem 0.5rem;
           border-radius: 3px;
           transition: all 0.2s ease;
@@ -173,7 +173,7 @@ class CvWorkEntry extends HTMLElement {
         }
 
         .action-icon {
-          font-size: 1rem;
+          /* font-size: 1rem; */
           line-height: 1;
         }
 
@@ -184,7 +184,7 @@ class CvWorkEntry extends HTMLElement {
         /* Print styles */
         @media print {
           .description-list li {
-            font-size: 9pt;
+            /* font-size: 9pt; */
             line-height: 1.2;
           }
         }

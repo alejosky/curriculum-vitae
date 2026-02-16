@@ -232,8 +232,8 @@ cv-work-entry,
     color: #333;
     background: #bdbdbd;
     border-radius: 0;
-    padding-left: 0;
-    margin-left: 0;
+    padding-left: 0.5cm;
+    margin-left: -0.5cm;
     margin-right: -2.5rem;
     page-break-after: avoid;
   }
@@ -292,7 +292,6 @@ cv-work-entry,
 
   .degree-info {
     color: #555;
-    margin-top: 0.25rem;
   }
 
   /* Skills section */
@@ -309,7 +308,7 @@ cv-work-entry,
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.3cm 0.5cm;
+    gap: 0.2cm 0.5cm;
   }
 
   .skill-item {
