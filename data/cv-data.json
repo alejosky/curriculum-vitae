@@ -291,6 +291,68 @@
       "companyUrl": "https://www.innio.com"
     },
     {
+      "id": "iaeste-president",
+      "company": "IAESTE Innsbruck",
+      "period": "07/2016 — 06/2018",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "President (voluntary)",
+        "de": "Präsident (ehrenamtlich)",
+        "es": "Presidente (voluntario)"
+      },
+      "type": "voluntary",
+      "description": {
+        "en": [
+          "General direction of the committee"
+        ],
+        "de": [
+          "Gesamtleitung des Komitees"
+        ],
+        "es": [
+          "Dirección general del comité"
+        ]
+      },
+      "technologies": [],
+      "visible": true,
+      "certificatePath": null,
+      "companyUrl": "https://iaeste.org/"
+    },
+    {
+      "id": "iaeste-exchange",
+      "company": "IAESTE Innsbruck",
+      "period": "09/2015 — 06/2016",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Exchange coordinator (voluntary)",
+        "de": "Austauschkoordinator (ehrenamtlich)",
+        "es": "Coordinador de intercambios (voluntario)"
+      },
+      "type": "voluntary",
+      "description": {
+        "en": [
+          "Review and supervision of internship candidates"
+        ],
+        "de": [
+          "Prüfung und Betreuung von Praktikumsbewerbern"
+        ],
+        "es": [
+          "Revisión y supervisión de candidatos a prácticas"
+        ]
+      },
+      "technologies": [],
+      "visible": true,
+      "certificatePath": null,
+      "companyUrl": "https://iaeste.org/"
+    },
+    {
       "id": "admorris",
       "company": "ad:morris",
       "period": "07/2016 — 11/2018",
