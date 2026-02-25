@@ -278,7 +278,7 @@
           "Entwicklung, Upgrade, Debugging und Migration von Webportalen",
           "Vor-Ort-Support beim Laptop-Client-Rollout in Mexiko",
           "Technische Beratung und Fehlerbehebung"
-        ],  
+        ],
         "es": [
           "Desarrollo, actualización, depuración y migración de portales web",
           "Soporte en sitio con despliegue de clientes portátiles en México",
@@ -306,15 +306,9 @@
       },
       "type": "voluntary",
       "description": {
-        "en": [
-          "General direction of the committee"
-        ],
-        "de": [
-          "Gesamtleitung des Komitees"
-        ],
-        "es": [
-          "Dirección general del comité"
-        ]
+        "en": ["General direction of the committee"],
+        "de": ["Gesamtleitung des Komitees"],
+        "es": ["Dirección general del comité"]
       },
       "technologies": [],
       "visible": true,
@@ -337,15 +331,9 @@
       },
       "type": "voluntary",
       "description": {
-        "en": [
-          "Review and supervision of internship candidates"
-        ],
-        "de": [
-          "Prüfung und Betreuung von Praktikumsbewerbern"
-        ],
-        "es": [
-          "Revisión y supervisión de candidatos a prácticas"
-        ]
+        "en": ["Review and supervision of internship candidates"],
+        "de": ["Prüfung und Betreuung von Praktikumsbewerbern"],
+        "es": ["Revisión y supervisión de candidatos a prácticas"]
       },
       "technologies": [],
       "visible": true,
@@ -409,10 +397,14 @@
     {
       "institution": "Compuestudio",
       "period": "02/2000 — 11/2002",
-      "location": "Medellín, Colombia",
+      "location": {
+        "en": "Medellín, Colombia",
+        "de": "Medellín, Kolumbien",
+        "es": "Medellín, Colombia"
+      },
       "degree": {
         "en": "High-school diploma",
-        "de": "Abitur",
+        "de": "Matura",
         "es": "Diploma de bachillerato"
       },
       "status": "completed"
@@ -420,10 +412,14 @@
     {
       "institution": "INEM \"José Félix de Restrepo\"",
       "period": "02/1996 — 11/1999",
-      "location": "Medellín, Colombia",
+      "location": {
+        "en": "Medellín, Colombia",
+        "de": "Medellín, Kolumbien",
+        "es": "Medellín, Colombia"
+      },
       "degree": {
         "en": "High-school",
-        "de": "Abitur",
+        "de": "Matura",
         "es": "Bachillerato"
       },
       "status": "completed"

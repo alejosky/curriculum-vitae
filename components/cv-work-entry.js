@@ -9,16 +9,24 @@ class CvWorkEntry extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["certificate-text", "visit-website-text", "technologies-label"];
+    return [
+      "company",
+      "period",
+      "location",
+      "role",
+      "type",
+      "description",
+      "technologies",
+      "certificate-path",
+      "company-url",
+      "certificate-text",
+      "visit-website-text",
+      "technologies-label",
+    ];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (
-      (name === "certificate-text" ||
-        name === "visit-website-text" ||
-        name === "technologies-label") &&
-      oldValue !== newValue
-    ) {
+  attributeChangedCallback(oldValue, newValue) {
+    if (oldValue !== newValue) {
       this.render();
     }
   }
