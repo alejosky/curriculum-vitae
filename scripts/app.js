@@ -162,11 +162,6 @@ function renderPersonalInfo() {
       ? personal.title[currentLang] || personal.title["en"] || ""
       : personal.title;
 
-  const birthDate = new Date(personal.birthDate);
-  const birthYear = birthDate.getFullYear();
-  const day = birthDate.getDate();
-  const month = birthDate.toLocaleString(currentLang, { month: "long" });
-
   const birthPlace =
     typeof personal.birthPlace === "object"
       ? personal.birthPlace[currentLang] || personal.birthPlace["en"] || ""
@@ -176,13 +171,38 @@ function renderPersonalInfo() {
       ? personal.nationality[currentLang] || personal.nationality["en"] || ""
       : personal.nationality;
 
-  document.getElementById("birthInfo").innerHTML =
-    `<strong>${t("born")}</strong> ${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}<br>${birthPlace}<br>${nationality}`;
+  // Modified to handle only birth year if date is not available
+  let dateString = "";
+  if (personal.birthDate) {
+    const birthDate = new Date(personal.birthDate);
+    const birthYear = birthDate.getFullYear();
+    const day = birthDate.getDate();
+    const month = birthDate.toLocaleString(currentLang, { month: "long" });
+    dateString = `${day}<sup>${getOrdinalSuffix(day)}</sup> ${month} ${birthYear}`;
+  } else if (personal.birthYear) {
+    dateString = `${personal.birthYear}`;
+  }
 
-  document.getElementById("address").innerHTML =
-    `${personal.address}<br>${personal.city}`;
+  document.getElementById("birthInfo").innerHTML =
+    `<strong>${t("born")}</strong> ${dateString}<br>${birthPlace}<br>${nationality}`;
+
+  // Only show city, address removed for privacy
+  document.getElementById("address").innerHTML = personal.city;
+
+  // Reconstruct phone number dynamically
+  let phoneDisplay = "";
+  if (personal.phone) {
+    phoneDisplay = personal.phone;
+  } else if (personal.phoneParts) {
+    // Simple reconstruction logic: create the string from parts
+    const { prefix, base, num } = personal.phoneParts;
+    // Mathematical formula: just joining them, but could be more complex
+    phoneDisplay = `${prefix} ${base} ${num}`;
+  }
+
   document.getElementById("phone").innerHTML =
-    `<a href="tel:${personal.phone}">${personal.phone}</a>`;
+    `<a href="tel:${phoneDisplay.replace(/\s/g, "")}">${phoneDisplay}</a>`;
+
   document.getElementById("email").innerHTML =
     `<a href="mailto:${personal.email}">${personal.email}</a>`;
   document.getElementById("linkedin").innerHTML =
