@@ -7,7 +7,7 @@
       "es": "Desarrollador Web"
     },
     "photo": "assets/face_1.jpg",
-    "birthDate": "1984-10-22",
+    "birthYear": 1984,
     "birthPlace": {
       "en": "Medellín, Colombia",
       "de": "Medellín, Kolumbien",
@@ -28,9 +28,12 @@
       "de": "keine Kinder",
       "es": "sin hijos"
     },
-    "address": "Mitterweg 96",
     "city": "6020 Innsbruck",
-    "phone": "+43 660 3870827",
+    "phoneParts": {
+      "prefix": "+43",
+      "base": 660,
+      "num": 3870827
+    },
     "email": "hirsch.alejo@gmail.com",
     "linkedin": "LinkedIn",
     "linkedinUrl": "https://www.linkedin.com/in/alejandro-hirsch-1b589117a/",

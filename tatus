@@ -1,0 +1,1323 @@
+[4mGIT-FILTER-REPO[24m(1)          git-filter-repo Manual          [4mGIT-FILTER-REPO[24m(1)
+
+[1mNAME[0m
+       git-filter-repo - Rewrite repository history
+
+[1mSYNOPSIS[0m
+       [4mgit[24m [4mfilter-repo[24m --analyze
+       [4mgit[24m [4mfilter-repo[24m [<path_filtering_options>] [<content_filtering_options>]
+               [<ref_renaming_options>] [<commit_message_filtering_options>]
+               [<name_or_email_filtering_options>] [<parent_rewriting_options>]
+               [<generic_callback_options>] [<miscellaneous_options>]
+
+[1mDESCRIPTION[0m
+       Rapidly rewrite entire repository history using user-specified filters.
+       This is a destructive operation which should not be used lightly; it
+       writes new commits, trees, tags, and blobs corresponding to (but
+       filtered from) the original objects in the repository, then deletes the
+       original history and leaves only the new. See the section called
+       “DISCUSSION” for more details on the ramifications of using this tool.
+       Several different types of history rewrites are possible; examples
+       include (but are not limited to):
+
+       •   stripping large files (or large directories or large extensions)
+
+       •   stripping unwanted files by path
+
+       •   extracting wanted paths and their history (stripping everything
+           else)
+
+       •   restructuring the file layout (such as moving all files into a
+           subdirectory in preparation for merging with another repo, making a
+           subdirectory become the new toplevel directory, or merging two
+           directories with independent filenames into one directory)
+
+       •   renaming tags (also often in preparation for merging with another
+           repo)
+
+       •   replacing or removing sensitive text such as passwords
+
+       •   making mailmap rewriting of user names or emails permanent
+
+       •   making grafts or replacement refs permanent
+
+       •   rewriting commit messages
+
+       Additionally, several concerns are handled automatically (many of these
+       can be overridden, but they are all on by default):
+
+       •   rewriting (possibly abbreviated) hashes in commit messages to refer
+           to the new post-rewrite commit hashes
+
+       •   pruning commits which become empty due to the above filters (also
+           handles edge cases like pruning of merge commits which become
+           degenerate and empty)
+
+       •   creating replace-refs (see [1mgit-replace[22m(1)) for old commit hashes,
+           which if manually pushed and fetched will allow users to continue
+           to refer to new commits using (unabbreviated) old commit IDs
+
+       •   stripping of original history to avoid mixing old and new history
+
+       •   repacking the repository post-rewrite to shrink the repo for the
+           user
+
+       Also, it’s worth noting that there is an important safety mechanism:
+
+       •   abort if run from a repo that is not a fresh clone (to prevent
+           accidental data loss from rewriting local history that doesn’t
+           exist anywhere else). See the section called “FRESH CLONE SAFETY
+           CHECK AND --FORCE”.
+
+       For those who know that there is large unwanted stuff in their history
+       and want help finding it, this command also
+
+       •   provides an option to analyze a repository and generate reports
+           that can be useful in determining what to filter (or in determining
+           whether a separate filtering command was successful).
+
+       See also the section called “VERSATILITY”, the section called
+       “DISCUSSION”, the section called “EXAMPLES”, and the section called
+       “INTERNALS”.
+
+[1mOPTIONS[0m
+   [1mAnalysis Options[0m
+       --analyze
+           Analyze repository history and create a report that may be useful
+           in determining what to filter in a subsequent run (or in
+           determining if a previous filtering command did what you wanted).
+           Will not modify your repo.
+
+   [1mFiltering based on paths (see also --filename-callback)[0m
+       These options specify the paths to select. Note that much like git
+       itself, renames are NOT followed so you may need to specify multiple
+       paths, e.g. [1m--path olddir/ --path newdir/[0m
+
+       --invert-paths
+           Invert the selection of files from the specified
+           --path-{match,glob,regex} options below, i.e. only select files
+           matching none of those options.
+
+       --path-match <dir_or_file>, --path <dir_or_file>
+           Exact paths (files or directories) to include in filtered history.
+           Multiple --path options can be specified to get a union of paths.
+
+       --path-glob <glob>
+           Glob of paths to include in filtered history. Multiple --path-glob
+           options can be specified to get a union of paths.
+
+       --path-regex <regex>
+           Regex of paths to include in filtered history. Multiple
+           --path-regex options can be specified to get a union of paths.
+
+       --use-base-name
+           Match on file base name instead of full path from the top of the
+           repo. Incompatible with --path-rename, and incompatible with
+           matching against directory names.
+
+   [1mRenaming based on paths (see also --filename-callback)[0m
+       Note: if you combine path filtering with path renaming, be aware that a
+       rename directive does not select paths, it only says how to rename
+       paths that are selected with the filters.
+
+       --path-rename <old_name:new_name>, --path-rename-match
+       <old_name:new_name>
+           Path to rename; if filename or directory matches <old_name> rename
+           to <new_name>. Multiple --path-rename options can be specified.
+
+   [1mPath shortcuts[0m
+       --paths-from-file <filename>
+           Specify several path filtering and renaming directives, one per
+           line. Lines with [1m==> [22min them specify path renames, and lines can
+           begin with [1mliteral: [22m(the default), [1mglob:[22m, or [1mregex: [22mto specify
+           different matching styles. Blank lines and lines starting with a [1m#[0m
+           are ignored (if you have a filename that you want to filter on that
+           starts with [1mliteral:[22m, [1m#[22m, [1mglob:[22m, or [1mregex:[22m, then prefix the line
+           with [4mliteral:[24m).
+
+       --subdirectory-filter <directory>
+           Only look at history that touches the given subdirectory and treat
+           that directory as the project root. Equivalent to using [1m--path[0m
+           [1m<directory>/ --path-rename <directory>/:[0m
+
+       --to-subdirectory-filter <directory>
+           Treat the project root as instead being under <directory>.
+           Equivalent to using [1m--path-rename :<directory>/[0m
+
+   [1mContent editing filters (see also --blob-callback)[0m
+       --replace-text <expressions_file>
+           A file with expressions that, if found, will be replaced. By
+           default, each expression is treated as literal text, but [1mregex: [22mand
+           [1mglob: [22mprefixes are supported. You can end the line with [1m==> [22mand
+           some replacement text to choose a replacement choice other than the
+           default of [1m***REMOVED***[22m.
+
+       --strip-blobs-bigger-than <size>
+           Strip blobs (files) bigger than specified size (e.g.  [1m5M[22m, [1m2G[22m, etc)
+
+       --strip-blobs-with-ids <blob_id_filename>
+           Read git object ids from each line of the given file, and strip all
+           of them from history
+
+   [1mRenaming of refs (see also --refname-callback)[0m
+       --tag-rename <old:new>
+           Rename tags starting with <old> to start with <new>. For example,
+           --tag-rename foo:bar will rename tag foo-1.2.3 to bar-1.2.3; either
+           <old> or <new> can be empty.
+
+   [1mFiltering of commit messages (see also --message-callback)[0m
+       --replace-message <expressions_file>
+           A file with expressions that, if found in commit or tag messages,
+           will be replaced. This file uses the same syntax as --replace-text.
+
+       --preserve-commit-hashes
+           By default, since commits are rewritten and thus gain new hashes,
+           references to old commit hashes in commit messages are replaced
+           with new commit hashes (abbreviated to the same length as the old
+           reference). Use this flag to turn off updating commit hashes in
+           commit messages.
+
+       --preserve-commit-encoding
+           Do not reencode commit messages into UTF-8. By default, if the
+           commit object specifies an encoding for the commit message, the
+           message is re-encoded into UTF-8.
+
+   [1mFiltering of names & emails (see also --name-callback and --email-callback)[0m
+
+       --mailmap <filename>
+           Use specified mailmap file (see [1mgit-shortlog[22m(1) for details on the
+           format) when rewriting author, committer, and tagger names and
+           emails. If the specified file is part of git history, historical
+           versions of the file will be ignored; only the current contents are
+           consulted.
+
+       --use-mailmap
+           Same as: [4m--mailmap[24m [4m.mailmap[0m
+
+   [1mParent rewriting[0m
+       --replace-refs {delete-no-add, delete-and-add, update-no-add,
+       update-or-add, update-and-add}
+           Replace refs (see [1mgit-replace[22m(1)) are used to rewrite parents
+           (unless turned off by the usual git mechanism); this flag specifies
+           what do do with those refs afterward. Replace refs can either be
+           deleted or updated to point at new commit hashes. Also, new replace
+           refs can be added for each commit rewrite. With [4mupdate-or-add[24m, new
+           replace refs are only added for commit rewrites that aren’t used to
+           update an existing replace ref. default is [4mupdate-and-add[24m if
+           $GIT_DIR/filter-repo/already_ran does not exist; [4mupdate-or-add[0m
+           otherwise.
+
+       --prune-empty {always, auto, never}
+           Whether to prune empty commits.  [4mauto[24m (the default) means only
+           prune commits which become empty (not commits which were empty in
+           the original repo, unless their parent was pruned). When the parent
+           of a commit is pruned, the first non-pruned ancestor becomes the
+           new parent.
+
+       --prune-degenerate {always, auto, never}
+           Since merge commits are needed for history topology, they are
+           typically exempt from pruning. However, they can become degenerate
+           with the pruning of other commits (having fewer than two parents,
+           having one commit serve as both parents, or having one parent as
+           the ancestor of the other.) If such merge commits have no file
+           changes, they can be pruned. The default ([4mauto[24m) is to only prune
+           empty merge commits which become degenerate (not which started as
+           such).
+
+       --no-ff
+           Even if the first parent is or becomes an ancestor of another
+           parent, do not prune it. This modifies how --prune-degenerate
+           behaves, and may be useful in projects who always use merge
+           --no-ff.
+
+   [1mGeneric callback code snippets[0m
+       --filename-callback <function_body>
+           Python code body for processing filenames; see the section called
+           “CALLBACKS”.
+
+       --message-callback <function_body>
+           Python code body for processing messages (both commit messages and
+           tag messages); see the section called “CALLBACKS”.
+
+       --name-callback <function_body>
+           Python code body for processing names of people; see the section
+           called “CALLBACKS”.
+
+       --email-callback <function_body>
+           Python code body for processing emails addresses; see the section
+           called “CALLBACKS”.
+
+       --refname-callback <function_body>
+           Python code body for processing refnames; see the section called
+           “CALLBACKS”.
+
+       --blob-callback <function_body>
+           Python code body for processing blob objects; see the section
+           called “CALLBACKS”.
+
+       --commit-callback <function_body>
+           Python code body for processing commit objects; see the section
+           called “CALLBACKS”.
+
+       --tag-callback <function_body>
+           Python code body for processing tag objects; see the section called
+           “CALLBACKS”.
+
+       --reset-callback <function_body>
+           Python code body for processing reset objects; see the section
+           called “CALLBACKS”.
+
+   [1mLocation to filter from/to[0m
+           [1mNote[0m
+
+           Specifying alternate source or target locations implies --partial
+           except that the normal default for --replace-refs is used. However,
+           unlike normal uses of --partial, this doesn’t risk mixing old and
+           new history since the old and new histories are in different
+           repositories.
+
+       --source <source>
+           Git repository to read from
+
+       --target <target>
+           Git repository to overwrite with filtered history
+
+   [1mMiscellaneous options[0m
+       --help, -h
+           Show a help message and exit.
+
+       --force, -f
+           Ignore fresh clone checks and rewrite history (an irreversible
+           operation, especially since it by default ends with an immediate
+           pruning of reflogs and old objects). See the section called “FRESH
+           CLONE SAFETY CHECK AND --FORCE”. Note that when cloning repos on a
+           local filesystem, it is better to pass [1m--no-local [22mto git clone than
+           passing [1m--force [22mto git-filter-repo.
+
+       --partial
+           Do a partial history rewrite, resulting in the mixture of old and
+           new history. This implies a default of update-no-add for
+           --replace-refs, disables rewriting refs/remotes/origin/* to
+           refs/heads/*, disables removing of the [4morigin[24m remote, disables
+           removing unexported refs, disables expiring the reflog, and
+           disables the automatic post-filter gc. Also, this modifies
+           --tag-rename and --refname-callback options such that instead of
+           replacing old refs with new refnames, it will instead create new
+           refs and keep the old ones around. Use with caution.
+
+       --refs <refs+>
+           Limit history rewriting to the specified refs. Implies --partial.
+           In addition to the normal caveats of --partial (mixing old and new
+           history, no automatic remapping of refs/remotes/origin/* to
+           refs/heads/*, etc.), this also may cause problems for pruning of
+           degenerate empty merge commits when negative revisions are
+           specified.
+
+       --dry-run
+           Do not change the repository. Run [1mgit fast-export [22mand filter its
+           output, and save both the original and the filtered version for
+           comparison. This also disables rewriting commit messages due to not
+           knowing new commit IDs and disables filtering of some empty commits
+           due to inability to query the fast-import backend.
+
+       --debug
+           Print additional information about operations being performed and
+           commands being run. (If used together with --dry-run, shows extra
+           information about what would be run).
+
+       --stdin
+           Instead of running [1mgit fast-export [22mand filtering its output, filter
+           the fast-export stream from stdin. The stdin must be in the
+           expected input format (e.g. it needs to include original-oid
+           directives).
+
+       --quiet
+           Pass --quiet to other git commands called.
+
+[1mOUTPUT[0m
+       Every time filter-repo is run, files are created in the
+       [1m.git/filter-repo/ [22mdirectory. These files are overwritten
+       unconditionally on every run.
+
+   [1mCommit map[0m
+       The [1m.git/filter-repo/commit-map [22mfile contains a mapping of how all
+       commits were (or were not) changed.
+
+       •   A header is the first line with the text "old" and "new"
+
+       •   Commit mappings are in no particular order
+
+       •   All commits in range of the rewrite will be listed, even commits
+           that are unchanged (e.g. because the commit pre-dated when the
+           large file(s) were introduced to the repo).
+
+       •   An all-zeros hash, or null SHA, represents a non-existent object.
+           When in the "new" column, this means the commit was removed
+           entirely.
+
+   [1mReference map[0m
+       The [1m.git/filter-repo/ref-map [22mfile contains a mapping of which local
+       references were changed.
+
+       •   A header is the first line with the text "old", "new" and "ref"
+
+       •   Reference mappings are in no particular order
+
+       •   An all-zeros hash, or null SHA, represents a non-existent object.
+           When in the "new" column, this means the ref was removed entirely.
+
+[1mFRESH CLONE SAFETY CHECK AND --FORCE[0m
+       Since filter-repo does irreversible rewriting of history, it is
+       important to avoid making changes to a repo for which the user doesn’t
+       have a good backup. The primary defense mechanism is to simply educate
+       users and rely on them to be good stewards of their data; thus there
+       are several warnings in the documentation about how filter repo
+       rewrites history.
+
+       However, as a service to users, we would like to provide an additional
+       safety check beyond the documentation. There isn’t a good way to check
+       if the user has a good backup, but we can ask a related question that
+       is an imperfect but quite reasonable proxy: "Is this repository a fresh
+       clone?" Unfortunately, that is also a question we can’t get a perfect
+       answer to; git provides no way to answer that question. However, there
+       are approximately a dozen things that I found that seem to always be
+       true of brand new clones (assuming they are either clones of remote
+       repositories or are made with the [1m--no-local [22mflag), and I check for all
+       of those.
+
+       These checks can have both false positives and false negatives. Someone
+       might have a perfectly good backup of their repo without it actually
+       being a fresh clone — but there’s no way for filter-repo to know that.
+       Conversely, someone could look at all things that filter-repo checks
+       for in its safety checks and then just tweak their non-backed-up
+       repository to satisfy those conditions (though it would take a fair
+       amount of effort, and it’s astronomically unlikely that a repo that
+       isn’t a fresh clone randomly happens to match all the criteria). In
+       practice, the safety checks filter-repo uses seem to be really good at
+       avoiding people accidentally running filter-repo on a repository that
+       they shouldn’t be running it on. It even caught me once when I did mean
+       to run filter-repo but was in a different directory than I thought I
+       was.
+
+       In short, it’s perfectly fine to use ‘--force` to override the safety
+       checks as long as you’re okay with filter-repo irreversibly rewriting
+       the contents of the current repository. It is a really bad idea to get
+       in the habit of always specifying [1m--force[22m; if you do, one day you will
+       run one of your commands in the wrong directory like I did, and you
+       won’t have the safety check anymore to bail you out. Also, it is
+       definitely NOT okay to recommend [1m--force [22mon forums, Q&A sites, or in
+       emails to other users without first carefully explaining that [1m--force[0m
+       means putting your repositories’ data at risk. I am especially bothered
+       by people who suggest the flag when it clearly is NOT needed; they are
+       needlessly putting other peoples' data at risk.
+
+[1mVERSATILITY[0m
+       filter-repo has a hierarchy of capabilities on the spectrum from easy
+       to use convenience flags that perform pre-defined types of filtering,
+       to choices that provide lots of flexibility in controlling how
+       filtering occurs. This spectrum includes the following:
+
+       •   Convenience flags making common types of history rewriting simple
+           (e.g. --path, --strip-blobs-bigger-than, --replace-text, --mailmap)
+
+       •   Options which are shorthand for others or which provide greater
+           control than others (e.g. --subdirectory-filter could just be
+           written using both a path selection (--path) and a path rename
+           (--path-rename) filter; --paths-from-file can handle all other
+           --path* options and more such as regex renaming of paths)
+
+       •   Generic python callbacks for handling a certain type of data (the
+           filename, message, name, email, and refname callbacks)
+
+       •   Generic python callbacks for handling fundamental git objects,
+           allowing greater control over the combination of data types the
+           object holds (the commit, tag, blob, and reset callbacks)
+
+       •   The ability to import filter-repo as a module in a python program
+           and use its classes and functions for even greater control and
+           flexibility while still leveraging lots of basic capabilities. One
+           can even use this to write new tools with a completely different
+           interface.
+
+       For more information about callbacks, see the section called
+       “CALLBACKS”. For examples on writing python programs that import
+       filter-repo as a module to create new history rewriting tools, look at
+       the contrib/filter-repo-demos/ directory. That directory includes,
+       among other examples, a reimplementation of git-filter-branch which is
+       faster than git-filter-branch, and a reimplementation of BFG Repo
+       Cleaner with several bug fixes and new features.
+
+[1mDISCUSSION[0m
+       Using filter-repo is relatively simple, but rewriting history is part
+       of a larger discussion in terms of collaboration. When you rewrite
+       history, the old and new histories are no longer compatible; if you
+       push this history somewhere for others to view, it will look as though
+       you’ve done a rebase of all branches and tags. Make sure you are
+       familiar with the "RECOVERING FROM UPSTREAM REBASE" section of [1mgit-[0m
+       [1mrebase[22m(1) (and in particular, "The hard case") before proceeding, in
+       addition to this section.
+
+       Steps to use git-filter-repo as part of the bigger picture of doing a
+       history rewrite are roughly as follows:
+
+        1. Create a clone of your repository (if you created special refs
+           outside of refs/heads/ or refs/tags/, make sure to fetch those
+           too). You may pass [1m--bare [22mor [1m--mirror [22mto [1mgit clone[22m, if you prefer.
+           You should pass [1m--no-local [22mif the repository you are cloning from
+           is on the local filesystem. Avoid other flags; some might confuse
+           the fresh clone check, and others could cause parts of the data to
+           be missing that are needed for the rewrite.
+
+        2. (Optional) Run [1mgit filter-repo --analyze[22m. This will create a
+           directory of reports mentioning renames that have occurred in your
+           repo and also listing sizes of objects aggregated by
+           path/directory/extension/blob-id; this information may be useful in
+           choosing how to filter your repo. It can also be useful to re-run
+           --analyze after filtering to verify the changes look correct.
+
+        3. Run filter-repo with your desired filtering options. Many examples
+           are given below. For more complex cases, note that doing the
+           filtering in multiple steps (by running multiple filter-repo
+           invocations in a sequence) is supported. If anything goes wrong
+           here, simply delete your clone and restart.
+
+        4. Push your new repository to its new home (note that
+           refs/remotes/origin/* will have been moved to refs/heads/* as the
+           first part of filter-repo, so you can just deal with normal
+           branches instead of remote tracking branches). While you can force
+           push this to the same URL you cloned from, there are good reasons
+           to consider pushing to a different location instead:
+
+           •   People who cloned from the original repo will have old history.
+               When they fetch the new history you force pushed up, unless
+               they do a [1mgit reset --hard @{u} [22mon their branches or rebase
+               their local work, git will think they have hundreds or
+               thousands of commits with very similar commit messages as what
+               exist upstream (but which include files you wanted excised from
+               history), and allow the user to merge the two histories,
+               resulting in what looks like two copies of each commit. If they
+               then push this history back up, then everyone now has history
+               with two copies of each commit and the bad files have returned.
+               You’re more likely to succeed in forcing people to get rid of
+               the old history if they have to clone a new URL.
+
+           •   Rewriting history will rewrite tags; those who have already
+               downloaded tags will not get the updated tags by default (see
+               the "On Re-tagging" section of [1mgit-tag[22m(1)). Every user trying
+               to use an existing clone will have to forcibly delete all tags
+               and re-fetch them; it may be easier for them to just re-clone,
+               which they are more likely to do with a new clone URL.
+
+           •   Rewriting history may delete some refs (e.g. branches that only
+               had files that you wanted excised from history); unless you run
+               git push with the [1m--mirror [22mor [1m--prune [22moptions, those refs will
+               continue to exist on the server. If folks then merge these
+               branches into others, then people have started mixing old and
+               new history. If users had already cloned these branches,
+               removing them from the server isn’t enough; you need all users
+               to delete any local branches based on these refs and run fetch
+               with the [1m--prune [22moption as well. Simply re-cloning from a new
+               URL is easier.
+
+           •   The server may not allow you to force push over some refs. For
+               example, code review systems may have special ref namespaces
+               (e.g. refs/changes/, refs/pull/, refs/merge-requests/) that
+               they have locked down.
+
+        5. If you still want to push your rewritten history back to the
+           original url despite my warnings above, you’ll have to manage it
+           very carefully:
+
+           •   git-filter-repo deletes the "origin" remote to help avoid
+               people accidentally repushing to the same repository, so you’ll
+               need to remind git what origin’s url was. You’ll have to look
+               up the command for that.
+
+           •   You’ll need to carefully synchronize with [1meveryone [22mwho has
+               cloned the repository, and will also need to carefully
+               synchronize with [1meverything [22m(e.g. CI systems) that has cloned
+               it. Every single clone will either need to be thrown away and
+               re-cloned, or need to take all the steps outlined in item 4 as
+               well as follow the necessary steps from "RECOVERING FROM
+               UPSTREAM REBASE" section of [1mgit-rebase[22m(1). If you miss fixing
+               any clones, you’ll risk mixing old and new history and end up
+               with an even worse mess to clean up.
+
+           •   Finally, you’ll need to consult any documentation from your
+               hosting provider about how to remove any server-side references
+               to the old commits (example: [34m[1mGitLab’s excellent docs on[0m
+               [1m[34mreducing repository size[0m[1m[22m[1], or just the warning box that
+               references "GitHub support" from [34m[1mGitHub’s otherwise dangerously[0m
+               [1m[34mout-of-date docs on removing sensitive data[0m[1m[22m[2]).
+
+        6. (Optional) Some additional considerations
+
+           •   filter-repo by default creates replace refs (see [1mgit-[0m
+               [1mreplace[22m(1)) for each rewritten commit ID, allowing you to use
+               old (unabbreviated) commit hashes in the git command line to
+               refer to the newly rewritten commits. If you want to use these
+               replace refs, manually push them to the relevant clone URL and
+               tell users to manually fetch them (e.g. by adjusting their
+               fetch refspec, [1mgit config --add remote.origin.fetch[0m
+               [1m+refs/replace/*:refs/replace/*[22m). Sadly, replace refs are not
+               yet widely understood; projects like jgit and libgit2 do not
+               support them and existing repository managers (e.g. Gerrit,
+               GitHub, GitLab) do not yet understand replace refs. Thus one
+               can’t use old commit hashes within the UI of these other
+               systems. This may change in the future, but replace refs at
+               least help users locally within the git command line interface.
+               Also, be aware that commit-graphs are excessively cautious
+               around replace refs and just turn off entirely if any are
+               present, so after enough time has passed that old commit IDs
+               become less relevant, users may want to locally delete the
+               replace refs to regain the speedups from commit-graphs.
+
+           •   If you have a central repo, you may want to prevent people from
+               pushing old commit IDs, in order to avoid mixing old and new
+               history. Every repository manager does this differently, some
+               provide specialized commands (e.g.
+               [34m[1mhttps://gerrit-review.googlesource.com/Documentation/cmd-ban-commit.html[0m[1m[22m),
+               others require you to write hooks.
+
+[1mEXAMPLES[0m
+   [1mPath based filtering[0m
+       To only keep the [4mREADME.md[24m file plus the directories [4mguides[24m and
+       [4mtools/releases/[24m:
+
+           git filter-repo --path README.md --path guides/ --path tools/releases
+
+       Directory names can be given with or without a trailing slash, and all
+       filenames are relative to the toplevel of the repo. To keep all files
+       except these paths, just add [1m--invert-paths[22m:
+
+           git filter-repo --path README.md --path guides/ --path tools/releases --invert-paths
+
+       If you want to have both an inclusion filter and an exclusion filter,
+       just run filter-repo multiple times. For example, to keep the src/main
+       subdirectory but exclude files under src/main named [4mdata[24m, run:
+
+           git filter-repo --path src/main/
+           git filter-repo --path-glob 'src/*/data' --invert-paths
+
+       Note that the asterisk ([1m*[22m) will match across multiple directories, so
+       the second command would remove e.g. src/main/org/whatever/data. Also,
+       the second command by itself would also remove e.g.
+       src/not-main/foo/data, but since src/not-main/ was removed by the first
+       command, that’s not an issue. Also, the use of quotes around the
+       asterisk is sometimes important to avoid glob expansion by the shell.
+
+       You can also select paths by regular expression (see
+       [34m[1mhttps://docs.python.org/3/library/re.html#regular-expression-syntax[0m[1m[22m).
+       For example, to only include files from the repo whose name is in the
+       format YYYY-MM-DD.txt and is found at least two subdirectories deep:
+
+           git filter-repo --path-regex '^.*/.*/[0-9]{4}-[0-9]{2}-[0-9]{2}.txt$'
+
+       If you want two directories to be renamed (and maybe merged if both are
+       renamed to the same location), use --path-rename; for example, to
+       rename both [4mcmds/[24m and [4msrc/scripts/[24m to [4mtools/[24m:
+
+           git filter-repo --path-rename cmds:tools --path-rename src/scripts/:tools/
+
+       As with [1m--path[22m, directories can be specified with or without a trailing
+       slash for [1m--path-rename[22m.
+
+       If you do a [1m--path-rename [22mto something that was already in use, it will
+       be silently overwritten. However, if you try to rename multiple files
+       to the same location (e.g. src/scripts/run_release.sh and
+       cmds/run_release.sh both existed and had different content with the
+       renames above), then you will be given an error. If you have such a
+       case, you may want to add another rename command to move one of the
+       paths somewhere else where it won’t collide:
+
+           git filter-repo --path-rename cmds/run_release.sh:tools/do_release.sh \
+                           --path-rename cmds/:tools/ \
+                           --path-rename src/scripts/:tools/
+
+       Also, [1m--path-rename [22mbrings up ordering issues; all path arguments are
+       applied in order. Thus, a command like
+
+           git filter-repo --path-rename sources/:src/main/ --path src/main/
+
+       would make sense but reversing the two arguments would not (src/main/
+       is created by the rename so reversing the two would give you an empty
+       repo). Also, note that the rename of cmds/run_release.sh a couple
+       examples ago was done before the other renames.
+
+       Note that path renaming does not do path filtering, thus the following
+       command
+
+           git filter-repo --path src/main/ --path-rename tools/:scripts/
+
+       would not result in the tools or scripts directories being present,
+       because the single filter selected only src/main/. It’s likely that you
+       would instead want to run:
+
+           git filter-repo --path src/main/ --path tools/ --path-rename tools/:scripts/
+
+       If you prefer to filter based solely on basename, use the
+       [1m--use-base-name [22mflag (though this is incompatible with [1m--path-rename[22m).
+       For example, to only include README.md and Makefile files from any
+       directory:
+
+           git filter-repo --use-base-name --path README.md --path Makefile
+
+       If you wanted to delete all .DS_Store files in any directory, you could
+       either use:
+
+           git filter-repo --invert-paths --path '.DS_Store' --use-base-name
+
+       or
+
+           git filter-repo --invert-paths --path-glob '*/.DS_Store' --path '.DS_Store'
+
+       (the [1m--path-glob [22misn’t sufficient by itself as it might miss a toplevel
+       .DS_Store file; further while something like [1m--path-glob '*.DS_Store'[0m
+       would workaround that problem it would also grab files named
+       [1mfoo.DS_Store [22mor [1mbar/baz.DS_Store[22m)
+
+       Finally, see also the [1m--filename-callback [22mfrom the section called
+       “CALLBACKS”.
+
+   [1mFiltering based on many paths[0m
+       If you have a long list of files, directories, globs, or regular
+       expressions to filter on, you can stick them in a file and use
+       [1m--paths-from-file[22m; for example, with a file named stuff-i-want.txt with
+       contents of
+
+           # Blank lines and comment lines are ignored.
+           # Examples similar to --path:
+           README.md
+           guides/
+           tools/releases
+
+           # An example that is like --path-glob:
+           glob:*.py
+
+           # An example that is like --path-regex:
+           regex:^.*/.*/[0-9]{4}-[0-9]{2}-[0-9]{2}.txt$
+
+           # An example of renaming a path
+           tools/==>scripts/
+
+           # An example of using a regex to rename a path
+           regex:(.*)/([^/]*)/([^/]*)\.text$==>\2/\1/\3.txt
+
+       then you could run
+
+           git filter-repo --paths-from-file stuff-i-want.txt
+
+       to get a repo containing only the toplevel README.md file, the guides/
+       and tools/releases/ directories, all python files, files whose name was
+       of the form YYYY-MM-DD.txt at least two subdirectories deep, and would
+       rename tools/ to scripts/ and rename files like foo/bar/baz.text to
+       bar/foo/baz.txt. Note the special line prefixes of [1mglob: [22mand [1mregex: [22mand
+       the special string [1m==> [22mdenoting renames.
+
+       Sometimes you have a way of easily generating all the files you want.
+       For example, if you know that none of the currently tracked files have
+       any newlines or special characters in them (see core.quotePath from [1mgit[0m
+       [1mconfig --help[22m) so that [1mgit ls-files [22mwould print all files literally one
+       per line, and you knew that you wanted to keep only the files that are
+       currently tracked (thus deleting from all commits in history any files
+       that only appear on other branches or that only appear in older
+       commits), then you could use a pair of commands such as
+
+           git ls-files >../paths-i-want.txt
+           git filter-repo --paths-from-file ../paths-i-want.txt
+
+       Similarly, you could use --paths-from-file to delete many files. For
+       example, you could run [1mgit filter-repo --analyze [22mto get reports, look
+       in one such as .git/filter-repo/analysis/path-deleted-sizes.txt and
+       copy all the filenames into a file such as
+       /tmp/files-i-dont-want-anymore.txt and then run
+
+           git filter-repo --invert-paths --paths-from-file /tmp/files-i-dont-want-anymore.txt
+
+       to delete them all.
+
+   [1mDirectory based shortcuts[0m
+       Let’s say you had a directory structure like the following:
+
+           module/
+              foo.c
+              bar.c
+           otherDir/
+              blah.config
+              stuff.txt
+           zebra.jpg
+
+       If you wanted just the module/ directory and you wanted it to become
+       the new root so that your new directory structure looked like
+
+           foo.c
+           bar.c
+
+       then you could run:
+
+           git filter-repo --subdirectory-filter module/
+
+       If you wanted all the files from the original repo, but wanted to move
+       everything under a subdirectory named my-module/, so that your new
+       directory structure looked like
+
+           my-module/
+              module/
+                 foo.c
+                 bar.c
+              otherDir/
+                 blah.config
+                 stuff.txt
+              zebra.jpg
+
+       then you would instead run run
+
+           git filter-repo --to-subdirectory-filter my-module/
+
+   [1mContent based filtering[0m
+       If you want to filter out all files bigger than a certain size, you can
+       use [1m--strip-blobs-bigger-than [22mwith some size (K, M, and G suffixes are
+       recognized), e.g.:
+
+           git filter-repo --strip-blobs-bigger-than 10M
+
+       If you want to strip out all files with specified git object ids
+       (hashes), list the hashes in a file and run
+
+           git filter-repo --strip-blobs-with-ids FILE_WITH_GIT_BLOB_IDS
+
+       If you want to modify file contents, you can do so based on a list of
+       expressions in a file, one per line. For example, with a file named
+       expressions.txt containing
+
+           p455w0rd
+           foo==>bar
+           glob:*666*==>
+           regex:\bdriver\b==>pilot
+           literal:MM/DD/YYYY==>YYYY-MM-DD
+           regex:([0-9]{2})/([0-9]{2})/([0-9]{4})==>\3-\1-\2
+
+       then running
+
+           git filter-repo --replace-text expressions.txt
+
+       will go through and replace [1mp455w0rd [22mwith [1m***REMOVED***[22m, [1mfoo [22mwith [1mbar[22m,
+       any line containing [1m666 [22mwith a blank line, the word [1mdriver [22mwith [1mpilot[0m
+       (but not if it has letters before or after; e.g. [1mdrivers [22mwill be
+       unmodified), replace the exact text [1mMM/DD/YYYY [22mwith [1mYYYY-MM-DD [22mand
+       replace date strings of the form MM/DD/YYYY with ones of the form
+       YYYY-MM-DD. In the expressions file, there are a few things to note:
+
+       •   Every line has a replacement, given by whatever is on the right of
+           [1m==>[22m. If [1m==> [22mdoes not appear on the line, the default replacement is
+           [1m***REMOVED***[22m.
+
+       •   Lines can start with [1mliteral:[22m, [1mglob:[22m, or [1mregex: [22mto specify whether
+           to do literal string matches, globs (see
+           [34m[1mhttps://docs.python.org/3/library/fnmatch.html[0m[1m[22m), or regular
+           expressions (see
+           [34m[1mhttps://docs.python.org/3/library/re.html#regular-expression-syntax[0m[1m[22m).
+           If none of these are specified, [1mliteral: [22mis assumed.
+
+       •   If multiple matches are found, all are replaced.
+
+       •   globs and regexes are applied to the entire file, but without any
+           special flags turned on. Some folks may be interested in adding
+           [1m(?m) [22mto the regex to turn on MULTILINE mode, so that [1m^ [22mand [1m$ [22mmatch
+           the beginning and ends of lines rather than the beginning and end
+           of file. See [34m[1mhttps://docs.python.org/3/library/re.html [0m[1m[22mfor details.
+
+       See also the [1m--blob-callback [22mfrom the section called “CALLBACKS”.
+
+   [1mUpdating commit/tag messages[0m
+       If you want to modify commit or tag messages, you can do so with the
+       same syntax as [1m--replace-text[22m, explained above. For example, with a
+       file named expressions.txt containing
+
+           foo==>bar
+
+       then running
+
+           git filter-repo --replace-message expressions.txt
+
+       will replace [1mfoo [22min commit or tag messages with [1mbar[22m.
+
+       See also the [1m--message-callback [22mfrom the section called “CALLBACKS”.
+
+   [1mRefname based filtering[0m
+       To rename tags, use [1m--tag-rename[22m, e.g.:
+
+           git filter-repo --tag-rename foo:bar
+
+       This will rename any tags starting with [1mfoo [22mto now start with [1mbar[22m.
+       Either side of the colon could be blank, e.g.
+
+           git filter-repo --tag-rename '':'my-module-'
+
+       For more general refname modification, see [1m--refname-callback [22mfrom the
+       section called “CALLBACKS”.
+
+   [1mUser and email based filtering[0m
+       To modify username and emails of commits, you can create a mailmap file
+       in the format accepted by [1mgit-shortlog[22m(1). For example, if you have a
+       file named my-mailmap you can run
+
+           git filter-repo --mailmap my-mailmap
+
+       and if the current contents of that file are as follows (if the
+       specified mailmap file is version controlled, historical versions of
+       the file are ignored):
+
+           Name For User <email@addre.ss>
+           <new@ema.il> <old1@ema.il>
+           New Name And <new@ema.il> <old2@ema.il>
+           New Name And <new@ema.il> Old Name And <old3@ema.il>
+
+       then we can update username and/or emails based on the specified
+       mapping.
+
+       See also the [1m--name-callback [22mand [1m--email-callback [22mfrom the section
+       called “CALLBACKS”.
+
+   [1mParent rewriting[0m
+       To replace $commit_A with $commit_B (e.g. make all commits which had
+       $commit_A as a parent instead have $commit_B for that parent), and
+       rewrite history to make it permanent:
+
+           git replace $commit_A $commit_B
+           git filter-repo --force
+
+       To create a new commit with the same contents as $commit_A except with
+       different parent(s) and then replace $commit_A with the new commit, and
+       rewrite history to make it permanent:
+
+           git replace --graft $commit_A $new_parent_or_parents
+           git filter-repo --force
+
+       The reason to specify --force is two-fold: filter-repo will error out
+       if no arguments are specified, and the new graft commit would otherwise
+       trigger the not-a-fresh-clone check.
+
+   [1mPartial history rewrites[0m
+       To rewrite the history on just one branch (which may cause it to no
+       longer share any common history with other branches), use [1m--refs[22m. For
+       example, to remove a file named [4mextraneous.txt[24m from the [4mmaster[24m branch:
+
+           git filter-repo --invert-paths --path extraneous.txt --refs master
+
+       To rewrite just some recent commits:
+
+           git filter-repo --invert-paths --path extraneous.txt --refs master~3..master
+
+[1mCALLBACKS[0m
+       For flexibility, filter-repo allows you to specify functions on the
+       command line to further filter all changes. Please note that there are
+       some API compatibility caveats associated with these callbacks that you
+       should be aware of before using them; see the "API BACKWARD
+       COMPATIBILITY CAVEAT" comment near the top of git-filter-repo source
+       code.
+
+       All callback functions are of the same general format. For a command
+       line argument like
+
+           --foo-callback 'BODY'
+
+       the following code will be compiled and called:
+
+           def foo_callback(foo):
+             BODY
+
+       Thus, you just need to make sure your [4mBODY[24m modifies and returns [4mfoo[0m
+       appropriately. One important thing to note for all callbacks is that
+       filter-repo uses bytestrings (see
+       [34m[1mhttps://docs.python.org/3/library/stdtypes.html#bytes[0m[1m[22m) everywhere
+       instead of strings.
+
+       There are four callbacks that allow you to operate directly on raw
+       objects that contain data that’s easy to write in [1mgit-fast-import[22m(1)
+       format:
+
+           --blob-callback
+           --commit-callback
+           --tag-callback
+           --reset-callback
+
+       We’ll come back to these later because it is often the case that the
+       other callbacks are more convenient. The other callbacks operate on a
+       small piece of the raw objects or operate on pieces across multiple
+       types of raw object (e.g. author names and committer names and tagger
+       names across commits and tags, or refnames across commits, tags, and
+       resets, or messages across commits and tags). The convenience callbacks
+       are:
+
+           --filename-callback
+           --message-callback
+           --name-callback
+           --email-callback
+           --refname-callback
+
+       in each you are expected to simply return a new value based on the one
+       passed in. For example,
+
+           git-filter-repo --name-callback 'return name.replace(b"Wiliam", b"William")'
+
+       would result in the following function being called:
+
+           def name_callback(name):
+             return name.replace(b"Wiliam", b"William")
+
+       The email callback is quite similar:
+
+           git-filter-repo --email-callback 'return email.replace(b".cm", b".com")'
+
+       The refname callback is also similar, but note that the refname passed
+       in and returned are expected to be fully qualified (e.g.
+       b"refs/heads/master" instead of just b"master" and b"refs/tags/v1.0.7"
+       instead of b"1.0.7"):
+
+           git-filter-repo --refname-callback '
+             # Change e.g. refs/heads/master to refs/heads/prefix-master
+             rdir,rpath = os.path.split(refname)
+             return rdir + b"/prefix-" + rpath'
+
+       The message callback is quite similar to the previous three callbacks,
+       though it operates on a bytestring that is likely more than one line:
+
+           git-filter-repo --message-callback '
+             if b"Signed-off-by:" not in message:
+               message += b"\nSigned-off-by: Me My <self@and.eye>"
+             return re.sub(b"[Ee]-?[Mm][Aa][Ii][Ll]", b"email", message)'
+
+       The filename callback is slightly more interesting. Returning None
+       means the file should be removed from all commits, returning the
+       filename unmodified marks the file to be kept, and returning a
+       different name means the file should be renamed. An example:
+
+           git-filter-repo --filename-callback '
+             if b"/src/" in filename:
+               # Remove all files with a directory named "src" in their path
+               # (except when "src" appears at the toplevel).
+               return None
+             elif filename.startswith(b"tools/"):
+               # Rename tools/ -> scripts/misc/
+               return b"scripts/misc/" + filename[6:]
+             else:
+               # Keep the filename and do not rename it
+               return filename
+             '
+
+       In contrast, the blob, reset, tag, and commit callbacks are not
+       expected to return a value, but are instead expected to modify the
+       object passed in. Major fields for these objects are (subject to API
+       backward compatibility caveats mentioned previously):
+
+       •   Blob: [1moriginal_id [22m(original hash) and [1mdata[0m
+
+       •   Reset: [1mref [22m(name of reference) and [1mfrom_ref [22m(hash or integer mark)
+
+       •   Tag: [1mref[22m, [1mfrom_ref[22m, [1moriginal_id[22m, [1mtagger_name[22m, [1mtagger_email[22m,
+           [1mtagger_date[22m, [1mmessage[0m
+
+       •   Commit: [1mbranch[22m, [1moriginal_id[22m, [1mauthor_name[22m, [1mauthor_email[22m,
+           [1mauthor_date[22m, [1mcommitter_name[22m, [1mcommitter_email[22m, [1mcommitter_date[22m,
+           [1mmessage[22m, [1mfile_changes [22m(list of FileChange objects, each containing
+           a [1mtype[22m, [1mfilename[22m, [1mmode[22m, and [1mblob_id[22m), [1mparents [22m(list of hashes or
+           integer marks)
+
+       An example of each:
+
+           git filter-repo --blob-callback '
+             if len(blob.data) > 25:
+               # Mark this blob for removal from all commits
+               blob.skip()
+             else:
+               blob.data = blob.data.replace(b"Hello", b"Goodbye")
+             '
+
+           git filter-repo --reset-callback 'reset.ref = reset.ref.replace(b"master", b"dev")'
+
+           git filter-repo --tag-callback '
+             if tag.tagger_name == b"Jim Williams":
+               # Omit this tag
+               tag.skip()
+             else:
+               tag.message = tag.message + b"\n\nTag of %s by %s on %s" % (tag.ref, tag.tagger_email, tag.tagger_date)'
+
+           git filter-repo --commit-callback '
+             # Remove executable files with three 6s in their name (including
+             # from leading directories).
+             # Also, undo deletion of sources/foo/bar.txt (change types are
+             # either b"D" (deletion) or b"M" (add or modify); renames are
+             # handled by deleting the old file and adding a new one)
+             commit.file_changes = [
+                    change for change in commit.file_changes
+                    if not (change.mode == b"100755" and
+                            change.filename.count(b"6") == 3) and
+                       not (change.type == b"D" and
+                            change.filename == b"sources/foo/bar.txt")]
+             # Mark all .sh files as executable; modes in git are always one of
+             # 100644 (normal file), 100755 (executable), 120000 (symlink), or
+             # 160000 (submodule)
+             for change in commit.file_changes:
+               if change.filename.endswith(b".sh"):
+                 change.mode = b"100755"
+             '
+
+[1mINTERNALS[0m
+       You probably don’t need to read this section unless you are just very
+       curious or you are trying to do a very complex history rewrite.
+
+   [1mHow filter-repo works[0m
+       Roughly, filter-repo works by running
+
+           git fast-export <options> | filter | git fast-import <options>
+
+       where filter-repo not only launches the whole pipeline but also serves
+       as the [4mfilter[24m in the middle. However, filter-repo does a few additional
+       things on top in order to make it into a well-rounded filtering tool. A
+       sequence that more accurately reflects what filter-repo runs is:
+
+        1. Verify we’re in a fresh clone
+
+        2. [1mgit fetch -u . refs/remotes/origin/*:refs/heads/*[0m
+
+        3. [1mgit remote rm origin[0m
+
+        4. [1mgit fast-export --show-original-ids --reference-excluded-parents[0m
+           [1m--fake-missing-tagger --signed-tags=strip[0m
+           [1m--tag-of-filtered-object=rewrite --use-done-feature --no-data[0m
+           [1m--reencode=yes --mark-tags --all | filter | git -c[0m
+           [1mcore.ignorecase=false fast-import --date-format=raw-permissive[0m
+           [1m--force --quiet[0m
+
+        5. [1mgit update-ref --no-deref --stdin[22m, fed with a list of refs to nuke,
+           and a list of replace refs to delete, create, or update.
+
+        6. [1mgit reset --hard[0m
+
+        7. [1mgit reflog expire --expire=now --all[0m
+
+        8. [1mgit gc --prune=now[0m
+
+       Some notes or exceptions on each of the above:
+
+        1. If we’re not in a fresh clone, users will not be able to recover if
+           they used the wrong command or ran in the wrong repo. (Though
+           [1m--force [22moverrides this check, and it’s also off if you’ve already
+           ran filter-repo once in this repo.)
+
+        2. Technically, we actually use a [1mgit update-ref [22mcommand fed with a
+           lot of input due to the fact that users can use [1m--force [22mwhen local
+           branches might not match remote branches. But this fetch command
+           catches the intent rather succinctly.
+
+        3. We don’t want users accidentally pushing back to the original repo,
+           as discussed in the section called “DISCUSSION”. It also reminds
+           users that since history has been rewritten, this repo is no longer
+           compatible with the original. Finally, another minor benefit is
+           this allows users to push with the [1m--mirror [22moption to their new
+           home without accidentally sending remote tracking branches.
+
+        4. Some of these flags are always used but others are actually
+           conditional. For example, filter-repo’s [1m--replace-text [22mand
+           [1m--blob-callback [22moptions need to work on blobs so [1m--no-data [22mcannot
+           be passed to fast-export. But when we don’t need to work on blobs,
+           passing [1m--no-data [22mspeeds things up. Also, other flags may change
+           the structure of the pipeline as well (e.g.  [1m--dry-run [22mand [1m--debug[22m)
+
+        5. We use this step to write replace refs for accessing the newly
+           written commit hashes using their previous names. Also, if refs
+           were renamed by various steps, we need to delete the old refnames
+           in order to avoid mixing old and new history.
+
+        6. Users also have old versions of files in their working tree and
+           index; we want those cleaned up to match the rewritten history as
+           well. Note that this step is skipped in bare repos.
+
+        7. Reflogs will hold on to old history, so we need to expire them.
+
+        8. We need to gc to avoid mixing new and old history. Also, it shrinks
+           the repository for users, so they don’t have to do extra work.
+           (Odds are that they’ve only rewritten trees and commits and maybe a
+           few blobs, so [1m--aggressive [22misn’t needed and would be too slow.)
+
+       Information about these steps is printed out when [1m--debug [22mis passed to
+       filter-repo. When doing a [1m--partial [22mhistory rewrite, steps 2, 3, 7, and
+       8 are unconditionally skipped, step 5 is skipped if [1m--replace-refs [22mis
+       [1mupdate-no-add[22m, and just the nuke-unused-refs portion of step 5 is
+       skipped if [1m--replace-refs [22mis something else.
+
+   [1mLimitations[0m
+       [1mInherited limitations[0m
+
+           Since git filter-repo calls fast-export and fast-import to do a lot
+           of the heavy lifting, it inherits limitations from those systems:
+
+           •   extended commit headers, if any, are stripped
+
+           •   commits get rewritten meaning they will have new hashes;
+               therefore, signatures on commits and tags cannot continue to
+               work and instead are just removed (thus signed tags become
+               annotated tags)
+
+           •   tags of commits are supported. Prior to git-2.24.0, tags of
+               blobs and tags of tags are not supported (fast-export would die
+               on such tags). tags of trees are not supported in any git
+               version (since fast-export ignores tags of trees with a warning
+               and fast-import provides no way to import them).
+
+           •   annotated and signed tags outside of the refs/tags/ namespace
+               are not supported (their location will be mangled in weird
+               ways)
+
+           •   fast-import will die on various forms of invalid input, such as
+               a timezone with more than four digits
+
+           •   fast-export cannot reencode commit messages into UTF-8 if the
+               commit message is not valid in its specified encoding (in such
+               cases, it’ll leave the commit message and the encoding header
+               alone).
+
+           •   commits without an author will be given one matching the
+               committer
+
+           •   tags without a tagger will be given a fake tagger
+
+           •   references that include commit cycles in their history (which
+               can be created with [1mgit-replace[22m(1)) will not be flagged to the
+               user as an error but will be silently deleted by fast-export as
+               though the branch or tag contained no interesting files
+
+           There are also some limitations due to the design of these systems:
+
+           •   Trying to insert additional files into the stream can be
+               tricky; since fast-export only lists file changes in a merge
+               relative to its first parent, if you insert additional files
+               into a commit that is in the second (or third or fourth) parent
+               history of a merge, then you also need to add it to the merge
+               manually. (Similarly, if you change which parent is the first
+               parent in a merge commit, you need to manually update the list
+               of file changes to be relative to the new first parent.)
+
+           •   fast-export and fast-import work with exact file contents, not
+               patches. (e.g. "Whatever the current contents of this file,
+               update them to now have these contents") Because of this,
+               removing the changes made in a single commit or inserting
+               additional changes to a file in some commit and expecting them
+               to propagate forward is not something that can be done with
+               these tools. Use [1mgit-rebase[22m(1) for that.
+
+       [1mIntrinsic limitations[0m
+
+           Some types of filtering have limitations that would affect any tool
+           attempting to perform them; the most any tool can do is attempt to
+           notify the user when it detects an issue:
+
+           •   When rewriting commit hashes in commit messages, there are a
+               variety of cases when the hash will not be updated (whenever
+               this happens, a note is written to
+               [1m.git/filter-repo/suboptimal-issues[22m):
+
+               •   if a commit hash does not correspond to a commit in the old
+                   repo
+
+               •   if a commit hash corresponds to a commit that gets pruned
+
+               •   if an abbreviated hash is not unique
+
+           •   Pruning of empty commits can cause a merge commit to lose an
+               entire ancestry line and become a non-merge. If the merge
+               commit had no changes then it can be pruned too, but if it
+               still has changes it needs to be kept. This might cause minor
+               confusion since the commit will likely have a commit message
+               that makes it sound like a merge commit even though it’s not.
+               (Whenever a merge commit becomes a non-merge commit, a note is
+               written to [1m.git/filter-repo/suboptimal-issues[22m)
+
+       [1mIssues specific to filter-repo[0m
+
+           •   Multiple repositories in the wild have been observed which use
+               a bogus timezone ([1m+051800[22m); google will find you some reports.
+               The intended timezone wasn’t clear or wasn’t always the same.
+               Replace with a different bogus timezone that fast-import will
+               accept ([1m+0261[22m).
+
+           •   [1m--path-rename [22mcan result in pathname collisions; to avoid
+               excessive memory requirements of tracking which files are in
+               all commits or looking up what files exist with either every
+               commit or every usage of --path-rename, we just tell the user
+               that they might clobber other changes if they aren’t careful.
+               We can check if the clobbering comes from another --path-rename
+               without much overhead. (Perhaps in the future it’s worth adding
+               a slow mode to --path-rename that will do the more exhaustive
+               checks?)
+
+           •   There is no mechanism for directly controlling which flags are
+               passed to fast-export (or fast-import); only pre-defined flags
+               can be turned on or off as a side-effect of other options.
+               Direct control would make little sense because some options
+               like [1m--full-tree [22mwould require additional code in filter-repo
+               (to parse new directives), and others such as [1m-M [22mor [1m-C [22mwould
+               break assumptions used in other places of filter-repo.
+
+           •   Partial-repo filtering, while supported, runs counter to
+               filter-repo’s "avoid mixing old and new history" design. This
+               support has required improvements to core git as well (e.g. it
+               depends upon the [1m--reference-excluded-parents [22moption to
+               fast-export that was added specifically for this usage within
+               filter-repo). The [1m--partial [22mand [1m--refs [22moptions will continue to
+               be supported since there are people with usecases for them;
+               however, I am concerned that this inconsistency about mixing
+               old and new history seems likely to lead to user mistakes. For
+               now, I just hope that long explanations of caveats in the
+               documentation of these options suffice to curtail any such
+               problems.
+
+       [1mComments on reversibility[0m
+
+           Some people are interested in reversibility of a rewrite; e.g.
+           rewrite history, possibly add some commits, then unrewrite and get
+           the original history back plus a few new "unrewritten" commits.
+           Obviously this is impossible if your rewrite involves throwing away
+           information (e.g. filtering out files or replacing several
+           different strings with [1m***REMOVED***[22m), but may be possible with
+           some rewrites. filter-repo is likely to be a poor fit for this type
+           of workflow for a few reasons:
+
+           •   most of the limitations inherited from fast-export and
+               fast-import are of a type that cause reversibility issues
+
+           •   grafts and replace refs, if present, are used in the rewrite
+               and made permanent
+
+           •   rewriting of commit hashes will probably be reversible, but it
+               is possible for rewritten abbreviated hashes to not be unique
+               even if the original abbreviated hashes were.
+
+           •   filter-repo defaults to several forms of irreversible rewriting
+               that you may need to turn off (e.g. the last two bullet points
+               above or reencoding commit messages into UTF-8); it’s possible
+               that additional forms of irreversible rewrites will be added in
+               the future.
+
+           •   I assume that people use filter-repo for one-shot conversions,
+               not ongoing data transfers. I explicitly reserve the right to
+               change any API in filter-repo based on this presumption (and a
+               comment to this effect is found in multiple places in the code
+               and examples). You have been warned.
+
+[1mSEE ALSO[0m
+       [1mgit-rebase[22m(1), [1mgit-filter-branch[22m(1)
+
+[1mGIT[0m
+       Part of the [1mgit[22m(1) suite
+
+[1mNOTES[0m
+        1. GitLab’s excellent docs on reducing repository size
+           https://docs.gitlab.com/ee/user/project/repository/reducing_the_repo_size_using_git.html
+
+        2. GitHub’s   otherwise   dangerously  out-of-date  docs  on  removing
+           sensitive data
+           https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository
+
+Git 2.38.0-2                      12/08/2023                [4mGIT-FILTER-REPO[24m(1)
