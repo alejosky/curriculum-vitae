@@ -1,0 +1,516 @@
+{
+  "personal": {
+    "name": "Alejandro Hirsch",
+    "title": {
+      "en": "Web Developer",
+      "de": "Webentwickler",
+      "es": "Desarrollador Web"
+    },
+    "photo": "assets/face_1.jpg",
+    "birthYear": 1984,
+    "birthPlace": {
+      "en": "in Medellín, Colombia",
+      "de": "in Medellín, Kolumbien",
+      "es": "en Medellín, Colombia"
+    },
+    "nationality": {
+      "en": "Austrian",
+      "de": "Österreicher",
+      "es": "Austriaco"
+    },
+    "maritalStatus": {
+      "en": "single",
+      "de": "ledig",
+      "es": "soltero"
+    },
+    "children": {
+      "en": "no children",
+      "de": "keine Kinder",
+      "es": "sin hijos"
+    },
+    "city": "Innsbruck/Fraxern",
+    "phoneParts": {
+      "prefix": "+43",
+      "base": 660,
+      "num": 3870827
+    },
+    "email": "hirsch.alejo@gmail.com",
+    "linkedin": "LinkedIn",
+    "linkedinUrl": "https://www.linkedin.com/in/alejandro-hirsch-1b589117a/",
+    "intro": {
+      "en": "Experienced web developer with over 10 years in frontend development, specializing in modern JavaScript frameworks and e-commerce solutions. Proven track record of delivering high-quality web applications across diverse industries including fintech, e-commerce, and enterprise solutions. Strong expertise in Vue.js, React, and TypeScript, with a passion for clean code and best practices. By seamlessly integrating AI into my workflow, I operate at a 10x capacity, delivering robust solutions with exceptional speed and precision.",
+      "de": "Erfahrener Webentwickler mit über 10 Jahren Erfahrung in der Frontend-Entwicklung, spezialisiert auf moderne JavaScript-Frameworks und E-Commerce-Lösungen. Nachgewiesene Erfolgsbilanz bei der Bereitstellung hochwertiger Webanwendungen in verschiedenen Branchen, einschließlich Fintech, E-Commerce und Unternehmenslösungen. Starke Expertise in Vue.js, React und TypeScript mit einer Leidenschaft für sauberen Code und bewährte Praktiken. Durch die nahtlose Integration von KI in meinen Arbeitsablauf steigere ich meine Effizienz um ein Vielfaches und liefere robuste Lösungen mit außergewöhnlicher Geschwindigkeit und Präzision.",
+      "es": "Desarrollador web experimentado con más de 10 años en desarrollo frontend, especializado en frameworks modernos de JavaScript y soluciones de comercio electrónico. Trayectoria comprobada en la entrega de aplicaciones web de alta calidad en diversas industrias, incluidas fintech, comercio electrónico y soluciones empresariales. Fuerte experiencia en Vue.js, React y TypeScript, con pasión por el código limpio y las mejores prácticas. Al integrar la IA en mi flujo de trabajo, opero con una capacidad multiplicada, entregando soluciones robustas con una velocidad y precisión excepcionales."
+    }
+  },
+  "workExperience": [
+    {
+      "id": "altagama",
+      "company": "alta gama",
+      "period": "04/2023 — ",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Independent, fullstack web developer",
+        "de": "Selbstständiger Fullstack-Webentwickler",
+        "es": "Desarrollador web fullstack independiente"
+      },
+      "type": "",
+      "description": [],
+      "technologies": [],
+      "visible": true,
+      "certificatePath": "documents/GISA_Gewerbelizenz.pdf",
+      "companyUrl": "https://altagama.dev"
+    },
+    {
+      "id": "pixelart",
+      "company": "Pixelart",
+      "period": "02/2023 — 09/2023",
+      "location": {
+        "en": "Salzburg, Austria",
+        "de": "Salzburg, Österreich",
+        "es": "Salzburgo, Austria"
+      },
+      "role": {
+        "en": "Frontend web developer",
+        "de": "Frontend-Webentwickler",
+        "es": "Desarrollador web frontend"
+      },
+      "type": "remote",
+      "description": {
+        "en": [
+          "Implementation of frontend pages in Pimcore (Twig) and Vue",
+          "Development of frontend components with Vue and JavaScript",
+          "Collaboration in agile team environment"
+        ],
+        "de": [
+          "Implementierung von Frontend-Seiten in Pimcore (Twig) und Vue",
+          "Entwicklung von Frontend-Komponenten mit Vue und JavaScript",
+          "Zusammenarbeit in agiler Teamumgebung"
+        ],
+        "es": [
+          "Implementación de páginas frontend en Pimcore (Twig) y Vue",
+          "Desarrollo de componentes frontend con Vue y JavaScript",
+          "Colaboración en entorno de equipo ágil"
+        ]
+      },
+      "technologies": ["Pimcore", "Vue.js", "Twig", "JavaScript"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Pixelart DZ.pdf",
+      "companyUrl": "https://www.pixelart.at"
+    },
+    {
+      "id": "fredmansky",
+      "company": "Fredmansky",
+      "period": "08/2022 — 09/2022",
+      "location": {
+        "en": "Linz, Austria",
+        "de": "Linz, Österreich",
+        "es": "Linz, Austria"
+      },
+      "role": {
+        "en": "Frontend web developer",
+        "de": "Frontend-Webentwickler",
+        "es": "Desarrollador web frontend"
+      },
+      "type": "remote",
+      "description": {
+        "en": [
+          "Implementation of frontend components with Vue and JavaScript",
+          "Code optimization and refactoring",
+          "Integration with backend APIs"
+        ],
+        "de": [
+          "Implementierung von Frontend-Komponenten mit Vue und JavaScript",
+          "Code-Optimierung und Refactoring",
+          "Integration mit Backend-APIs"
+        ],
+        "es": [
+          "Implementación de componentes frontend con Vue y JavaScript",
+          "Optimización y refactorización de código",
+          "Integración con APIs backend"
+        ]
+      },
+      "technologies": ["Vue.js", "JavaScript"],
+      "visible": true,
+      "certificatePath": null,
+      "companyUrl": "https://www.fredmansky.com"
+    },
+    {
+      "id": "monkee",
+      "company": "Monkee Rocks",
+      "period": "06/2021 — 03/2022",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Frontend web developer",
+        "de": "Frontend-Webentwickler",
+        "es": "Desarrollador web frontend"
+      },
+      "type": "onsite",
+      "description": {
+        "en": [
+          "Full frontend implementation in React, and testing with Cypress for a finance coaching portal",
+          "Improvement and additions to the company's WordPress website",
+          "Agile development with Scrum methodology"
+        ],
+        "de": [
+          "Vollständige Frontend-Implementierung in React und Testen mit Cypress für ein Finanz-Coaching-Portal",
+          "Verbesserung und Ergänzungen der unternehmenseigenen WordPress-Website",
+          "Agile Entwicklung mit Scrum-Methodik"
+        ],
+        "es": [
+          "Implementación frontend completa en React y pruebas con Cypress para un portal de asesoramiento financiero",
+          "Mejora y adiciones al sitio web WordPress de la empresa",
+          "Desarrollo ágil con metodología Scrum"
+        ]
+      },
+      "technologies": ["React", "Cypress", "WordPress", "Scrum"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Monkee DZ.pdf",
+      "companyUrl": "https://www.monkee.rocks"
+    },
+    {
+      "id": "p8",
+      "company": "P8 Marketing",
+      "period": "02/2021 — 06/2021",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Frontend web developer",
+        "de": "Frontend-Webentwickler",
+        "es": "Desarrollador web frontend"
+      },
+      "type": "onsite",
+      "description": {
+        "en": [
+          "Full implementation of WordPress-based headless themes with Vue",
+          "Custom plugin development and theme customization",
+          "Client communication and requirement analysis"
+        ],
+        "de": [
+          "Vollständige Implementierung von WordPress-basierten Headless-Themes mit Vue",
+          "Individuelle Plugin-Entwicklung und Theme-Anpassung",
+          "Kundenkommunikation und Anforderungsanalyse"
+        ],
+        "es": [
+          "Implementación completa de temas headless basados en WordPress con Vue",
+          "Desarrollo de plugins personalizados y personalización de temas",
+          "Comunicación con clientes y análisis de requisitos"
+        ]
+      },
+      "technologies": ["WordPress", "Vue.js", "PHP"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A P8 DZ.pdf",
+      "companyUrl": "https://www.p8.eu"
+    },
+    {
+      "id": "styletronic",
+      "company": "Styletronic",
+      "period": "09/2020 — 11/2020",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Frontend web developer",
+        "de": "Frontend-Webentwickler",
+        "es": "Desarrollador web frontend"
+      },
+      "type": "onsite",
+      "description": {
+        "en": [
+          "Implementation of UI elements with React",
+          "Creation of UML diagrams for the project's architecture",
+          "Technical documentation"
+        ],
+        "de": [
+          "Implementierung von UI-Elementen mit React",
+          "Erstellung von UML-Diagrammen für die Projektarchitektur",
+          "Technische Dokumentation"
+        ],
+        "es": [
+          "Implementación de elementos de interfaz con React",
+          "Creación de diagramas UML para la arquitectura del proyecto",
+          "Documentación técnica"
+        ]
+      },
+      "technologies": ["React", "UML"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A Styletronic DZ.pdf",
+      "companyUrl": "https://www.styletronic.at/landing/"
+    },
+    {
+      "id": "innio",
+      "company": "INNIO",
+      "period": "08/2019 — 04/2020",
+      "location": {
+        "en": "Jenbach, Austria",
+        "de": "Jenbach, Österreich",
+        "es": "Jenbach, Austria"
+      },
+      "role": {
+        "en": "Consultant, web developer",
+        "de": "Berater, Webentwickler",
+        "es": "Consultor, desarrollador web"
+      },
+      "type": "onsite",
+      "description": {
+        "en": [
+          "Development, upgrade, debugging and migration of web portals",
+          "Onsite support with Laptop client rollout in Mexico",
+          "Technical consulting and troubleshooting"
+        ],
+        "de": [
+          "Entwicklung, Upgrade, Debugging und Migration von Webportalen",
+          "Vor-Ort-Support beim Laptop-Client-Rollout in Mexiko",
+          "Technische Beratung und Fehlerbehebung"
+        ],
+        "es": [
+          "Desarrollo, actualización, depuración y migración de portales web",
+          "Soporte en sitio con despliegue de clientes portátiles en México",
+          "Consultoría técnica y solución de problemas"
+        ]
+      },
+      "technologies": ["Web Development", "System Migration"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A INNIO DZ.pdf",
+      "companyUrl": "https://www.innio.com"
+    },
+    {
+      "id": "iaeste-president",
+      "company": "IAESTE Innsbruck",
+      "period": "07/2016 — 06/2018",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "President (voluntary)",
+        "de": "Präsident (ehrenamtlich)",
+        "es": "Presidente (voluntario)"
+      },
+      "type": "onsite",
+      "description": {
+        "en": ["General direction of the committee"],
+        "de": ["Gesamtleitung des Komitees"],
+        "es": ["Dirección general del comité"]
+      },
+      "technologies": [],
+      "visible": true,
+      "certificatePath": null,
+      "companyUrl": "https://iaeste.org/"
+    },
+    {
+      "id": "iaeste-exchange",
+      "company": "IAESTE Innsbruck",
+      "period": "09/2015 — 06/2016",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Exchange coordinator (voluntary)",
+        "de": "Austauschkoordinator (ehrenamtlich)",
+        "es": "Coordinador de intercambios (voluntario)"
+      },
+      "type": "onsite",
+      "description": {
+        "en": ["Review and supervision of internship candidates"],
+        "de": ["Prüfung und Betreuung von Praktikumsbewerbern"],
+        "es": ["Revisión y supervisión de candidatos a prácticas"]
+      },
+      "technologies": [],
+      "visible": true,
+      "certificatePath": null,
+      "companyUrl": "https://iaeste.org/"
+    },
+    {
+      "id": "admorris",
+      "company": "ad:morris",
+      "period": "07/2016 — 11/2018",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "role": {
+        "en": "Web developer",
+        "de": "Webentwickler",
+        "es": "Desarrollador web"
+      },
+      "type": "onsite",
+      "description": {
+        "en": [
+          "Development, debugging, fine-tuning and migration of websites",
+          "Full-stack web development with various technologies",
+          "Client project management and support"
+        ],
+        "de": [
+          "Entwicklung, Debugging, Feinabstimmung und Migration von Websites",
+          "Full-Stack-Webentwicklung mit verschiedenen Technologien",
+          "Kundenprojectmanagement und Support"
+        ],
+        "es": [
+          "Desarrollo, depuración, ajuste y migración de sitios web",
+          "Desarrollo web full-stack con diversas tecnologías",
+          "Gestión de proyectos de clientes y soporte"
+        ]
+      },
+      "technologies": ["Full Stack", "Web Development"],
+      "visible": true,
+      "certificatePath": "documents/HIRSCH A admorris DZ.pdf",
+      "companyUrl": "https://www.admorris.com"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universität Innsbruck",
+      "period": "11/2011 — 01/2017",
+      "location": {
+        "en": "Innsbruck, Austria",
+        "de": "Innsbruck, Österreich",
+        "es": "Innsbruck, Austria"
+      },
+      "degree": {
+        "en": "BSc Computer Science",
+        "de": "BSc Informatik",
+        "es": "Licenciatura en Informática"
+      },
+      "status": "not finished"
+    },
+    {
+      "institution": "Compuestudio",
+      "period": "02/2000 — 11/2002",
+      "location": {
+        "en": "Medellín, Colombia",
+        "de": "Medellín, Kolumbien",
+        "es": "Medellín, Colombia"
+      },
+      "degree": {
+        "en": "High-school diploma",
+        "de": "Matura",
+        "es": "Diploma de bachillerato"
+      },
+      "status": "completed"
+    },
+    {
+      "institution": "INEM \"José Félix de Restrepo\"",
+      "period": "02/1996 — 11/1999",
+      "location": {
+        "en": "Medellín, Colombia",
+        "de": "Medellín, Kolumbien",
+        "es": "Medellín, Colombia"
+      },
+      "degree": {
+        "en": "High-school",
+        "de": "Matura",
+        "es": "Bachillerato"
+      },
+      "status": "completed"
+    }
+  ],
+  "skills": {
+    "programmingLanguages": [
+      { "name": "TypeScript (JS)", "level": 5 },
+      { "name": "CSS", "level": 5 },
+      { "name": "HTML", "level": 5 },
+      { "name": "PHP", "level": 4 },
+      { "name": "SQL", "level": 4 },
+      { "name": "Java", "level": 3 },
+      { "name": "C/C++", "level": 3 }
+    ],
+    "frameworks": [
+      { "name": "Vue.js (Nuxt.js)", "level": 5 },
+      { "name": "React (Next.js)", "level": 4 },
+      { "name": "Tailwindcss", "level": 4 },
+      { "name": "WordPress", "level": 5 },
+      { "name": "Bootstrap", "level": 5 },
+      { "name": "Cypress", "level": 4 },
+      { "name": "Laravel", "level": 3 },
+      { "name": "JTL", "level": 3 }
+    ],
+    "developmentTools": [
+      { "name": "Git", "level": 5 },
+      { "name": "VS Code", "level": 5 },
+      { "name": "Chrome devTools", "level": 5 },
+      { "name": "Docker", "level": 3 }
+    ],
+    "otherTools": [
+      { "name": "Windows", "level": 5 },
+      { "name": "Linux", "level": 4 },
+      { "name": "Jira/Atlassian", "level": 4 },
+      { "name": "Node.js", "level": 5 },
+      { "name": "Eclipse", "level": 3 },
+      { "name": "Bash", "level": 4 }
+    ],
+    "methodologies": [
+      { "name": "OOP", "level": 5 },
+      { "name": "REST API", "level": 5 },
+      { "name": "Design Patterns", "level": 4 },
+      { "name": "Scrum", "level": 5 },
+      { "name": "CI/CD", "level": 4 },
+      { "name": "SEO", "level": 4 }
+    ]
+  },
+  "languages": [
+    { "name": "German", "level": "C1", "label": "advanced" },
+    { "name": "English", "level": "C1", "label": "advanced" },
+    { "name": "Spanish", "level": "Native", "label": "Mother Language" }
+  ],
+  "interests": {
+    "en": ["AI", "Automation", "Machine Learning", "Agentic systems"],
+    "de": [
+      "KI",
+      "Automatisierung",
+      "Maschinelles Lernen",
+      "Agentische Systeme"
+    ],
+    "es": [
+      "IA",
+      "Automatizaci\u00f3n",
+      "Aprendizaje autom\u00e1tico",
+      "Sistemas agentivos"
+    ]
+  },
+  "driverLicense": {
+    "en": "Classes A & B",
+    "de": "Klassen A & B",
+    "es": "Clases A & B"
+  },
+  "softSkills": {
+    "en": [
+      "Team leading",
+      "Agile methodologies",
+      "Intercultural communication",
+      "Client communication",
+      "Self-directed learning"
+    ],
+    "de": [
+      "Teamführung",
+      "Agile Methoden",
+      "Interkulturelle Kommunikation",
+      "Kundenkommunikation",
+      "Selbstständiges Lernen"
+    ],
+    "es": [
+      "Liderazgo de equipo",
+      "Metodologías ágiles",
+      "Comunicación intercultural",
+      "Comunicación con clientes",
+      "Aprendizaje autónomo"
+    ]
+  }
+}

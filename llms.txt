@@ -1,0 +1,53 @@
+# Alejandro Hirsch - Senior Web Developer
+
+> Experienced web developer with 10+ years of expertise in frontend development, specializing in modern JavaScript frameworks (Vue.js, React, TypeScript) and e-commerce solutions. Operating at 10x capacity through seamless AI integration.
+
+## Professional Profile
+
+Alejandro Hirsch is a highly skilled, trilingual (Spanish, English, German) web developer based in Innsbruck, Austria. He has a proven track record of delivering robust, high-quality web applications for diverse industries including fintech, e-commerce, and enterprise solutions.
+
+### Key Highlights
+- **10+ Years Experience:** Extensive background in frontend architecture and implementation.
+- **AI-Native Workflow:** Leverages AI tools to deliver solutions with exceptional speed, precision, and efficiency (10x capacity).
+- **Technology Stack:** Expert in Vue.js (Nuxt.js), React (Next.js), TypeScript, and WordPress.
+- **Industry Experience:** Worked with leading Austrian companies such as Pixelart, Monkee Rocks, P8 Marketing, and INNIO.
+- **Architecture:** Strong focus on clean code, design patterns, and native web technologies (Web Components, Shadow DOM).
+
+## Technical Skills
+
+### Core Technologies
+- **Languages:** JavaScript (ES6+), TypeScript, CSS3 (Tailwind, Styled Components), HTML5, PHP, SQL.
+- **Frameworks:** Vue.js (Level 5/5), React (Level 4/5), WordPress (Level 5/5), Nuxt.js, Next.js.
+- **Methodologies:** OOP, REST APIs, CI/CD, SPA, PWA, SEO, Design Patterns.
+
+### Tools & DevOps
+- **Development:** Git, Vite, Webpack, Cypress (Testing), VS Code.
+- **Environments:** Linux, Windows, Node.js, Docker.
+- **Management:** Jira, Atlassian, Agile/Scrum.
+
+## Professional Experience
+
+- **alta gama (Innsbruck, 2023–Present):** Independent Senior Frontend Developer.
+- **Pixelart (Salzburg, 2023):** Frontend Developer focusing on Pimcore and Vue.js.
+- **Monkee Rocks (Innsbruck, 2021–2022):** Lead frontend implementation for a fintech portal using React and Cypress.
+- **P8 Marketing (Innsbruck, 2021):** Developed headless WordPress themes with Vue.js.
+- **INNIO (Jenbach, 2019–2020):** Consultant and developer for enterprise web portal migration and rollout.
+- **IAESTE Innsbruck (Innsbruck, 07/2016 — 06/2018):** President (voluntary) — General direction of the committee.
+- **IAESTE Innsbruck (Innsbruck, 09/2015 — 06/2016):** Exchange coordinator (voluntary) — Review and supervision of internship candidates.
+
+## Education & Languages
+
+- **Education:** Computer Science studies at Universität Innsbruck; various certifications in web technologies.
+- **Languages:**
+  - **Spanish:** Native
+  - **English:** Advanced (C1)
+  - **German:** Advanced (C1)
+
+## Optional / Background
+
+- **Glider Pilot:** Holds a glider pilot license, demonstrating discipline and precision.
+- **Interests:** Motorcycles, travel, and gastronomy.
+- **Location:** Based in Innsbruck, Austria, with experience in international rollouts (e.g., Mexico).
+
+---
+*This file is optimized for LLMs to provide context about Alejandro Hirsch's professional background.*

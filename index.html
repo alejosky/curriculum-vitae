@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Curriculum Vitae - Alejandro Hirsch, Web Developer"
+    />
+    <meta name="author" content="Alejandro Hirsch" />
+    <title>Alejandro Hirsch - CV</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Alejandro Hirsch - CV" />
+    <meta
+      property="og:description"
+      content="Curriculum Vitae - Alejandro Hirsch, Web Developer"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:image" content="assets/favicon.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="es_ES" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Alejandro Hirsch - CV" />
+    <meta
+      name="twitter:description"
+      content="Curriculum Vitae - Alejandro Hirsch, Web Developer"
+    />
+    <meta name="twitter:image" content="assets/favicon.png" />
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/print.css" media="print" />
+  </head>
+  <body>
+    <!-- Floating vertical control tab -->
+    <nav class="no-print floating-controls">
+      <button
+        class="control-btn lang-btn"
+        data-lang="en"
+        aria-label="English"
+        title="English"
+      >
+        EN
+      </button>
+      <button
+        class="control-btn lang-btn"
+        data-lang="de"
+        aria-label="Deutsch"
+        title="Deutsch"
+      >
+        DE
+      </button>
+      <button
+        class="control-btn lang-btn"
+        data-lang="es"
+        aria-label="Español"
+        title="Español"
+      >
+        ES
+      </button>
+      <div class="control-divider"></div>
+      <button
+        class="control-btn theme-btn"
+        data-theme="auto"
+        aria-label="Auto theme"
+        title="Auto"
+      >
+        🌓
+      </button>
+      <button
+        class="control-btn theme-btn"
+        data-theme="light"
+        aria-label="Light theme"
+        title="Light"
+      >
+        ☀️
+      </button>
+      <button
+        class="control-btn theme-btn"
+        data-theme="dark"
+        aria-label="Dark theme"
+        title="Dark"
+      >
+        🌙
+      </button>
+      <div class="control-divider"></div>
+      <button
+        class="control-btn print-btn"
+        id="printBtn"
+        aria-label="Print"
+        title="Print / Save as PDF"
+      >
+        🖨️
+      </button>
+    </nav>
+
+    <header class="cv-header">
+      <h1>curriculum vitae</h1>
+    </header>
+    <main class="cv-container">
+      <!-- Left Column -->
+      <aside class="left-column">
+        <div class="photo-section">
+          <img
+            id="profilePhoto"
+            src=""
+            alt="Alejandro Hirsch"
+            class="profile-photo"
+            width="293"
+            height="293"
+          />
+        </div>
+
+        <section class="personal-section">
+          <h2 id="cvName"></h2>
+          <p id="cvTitle" class="cv-subtitle"></p>
+
+          <hr />
+
+          <h2 id="personalInfoTitle" data-i18n="personalInfo">
+            Personal Information
+          </h2>
+          <dl class="personal-info">
+            <dt id="birthInfo"></dt>
+            <dt id="nationality"></dt>
+            <dt id="address"></dt>
+            <dt id="maritalStatus"></dt>
+          </dl>
+        </section>
+
+        <section class="contact-section">
+          <h2 data-i18n="contactInfo">Contact</h2>
+          <dl class="contact-info">
+            <dt id="phone"></dt>
+            <dt id="email"></dt>
+            <dt id="linkedin"></dt>
+          </dl>
+        </section>
+
+        <section class="languages-section">
+          <h2 data-i18n="sidebarSkills">Skills</h2>
+
+          <h3 data-i18n="languages">Languages</h3>
+          <dl id="languagesList"></dl>
+
+          <h3 data-i18n="driverLicenseLabel">Driver License</h3>
+          <dl id="driverLicenseList"></dl>
+
+          <h3 data-i18n="softSkillsLabel">Soft Skills</h3>
+          <dl id="softSkillsList"></dl>
+        </section>
+
+        <section class="interests-section">
+          <h2 data-i18n="interests">Interests</h2>
+          <dl id="interestsList"></dl>
+        </section>
+
+        <section class="signature-section">
+          <!-- 
+          TODO: change for animated signature or handwritten font
+          -->
+          <img src="assets/signature.png" alt="Signature" class="signature-image" width="240" height="98" />
+        </section>
+      </aside>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <section class="intro-section">
+          <h2 data-i18n="intro">Professional Summary</h2>
+          <p id="introText"></p>
+        </section>
+
+        <section class="work-section">
+          <h2 data-i18n="workExperience">Work Experience</h2>
+          <div id="workExperienceList"></div>
+        </section>
+
+        <section class="education-section">
+          <h2 data-i18n="education">Education</h2>
+          <div id="educationList"></div>
+        </section>
+
+        <section class="skills-section">
+          <h2 data-i18n="skills">Key Skills and Competences</h2>
+          <div id="skillsList"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="cv-footer no-print">
+      <div class="footer-content">
+        <p>
+          <a
+            href="https://github.com/alejosky"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+          ·
+          <a
+            href="https://github.com/alejosky/curriculum-vitae"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repository</a
+          >
+          ·
+          <a
+            href="https://www.linkedin.com/in/alejandro-hirsch-1b589117a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+        </p>
+        <p id="signatureYear"></p>
+      </div>
+    </footer>
+
+    <script type="module" src="components/cv-work-entry.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+  </body>
+</html>
