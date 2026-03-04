@@ -1,0 +1,152 @@
+{
+  "en": {
+    "personalInfo": "Personal Information",
+    "workExperience": "Work Experience",
+    "education": "Education",
+    "skills": "Key Skills and Competences",
+    "languages": "Languages",
+    "interests": "Interests & Hobbies",
+    "print": "Print / Download PDF",
+    "seeCertificate": "See certificate",
+    "born": "Born",
+    "single": "single",
+    "noChildren": "no children",
+    "remote": "remote",
+    "onsite": "onsite",
+    "status": {
+      "notFinished": "not finished",
+      "completed": "completed"
+    },
+    "skillLevels": {
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "expert": "Expert",
+      "master": "Master"
+    },
+    "languageLevels": {
+      "native": "Mother Language",
+      "advanced": "advanced"
+    },
+    "languageNames": {
+      "German": "German",
+      "English": "English",
+      "Spanish": "Spanish"
+    },
+    "categories": {
+      "programmingLanguages": "Programming and markup languages",
+      "frameworks": "Frameworks and libraries",
+      "developmentTools": "Development tools",
+      "otherTools": "Other tools",
+      "methodologies": "Furthermore"
+    },
+    "driverLicense": "A & B Driver licence",
+    "intro": "Professional Summary",
+    "theme": "Theme",
+    "themeAuto": "Auto",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "visitWebsite": "Visit website",
+    "technologies": "Technologies"
+  },
+  "de": {
+    "personalInfo": "Persönliche Informationen",
+    "workExperience": "Berufserfahrung",
+    "education": "Ausbildung",
+    "skills": "Fähigkeiten und Kompetenzen",
+    "languages": "Sprachen",
+    "interests": "Interessen & Hobbys",
+    "print": "Drucken / PDF herunterladen",
+    "seeCertificate": "Zeugnis ansehen",
+    "born": "Geboren",
+    "single": "ledig",
+    "noChildren": "keine Kinder",
+    "remote": "remote",
+    "onsite": "vor Ort",
+    "status": {
+      "notFinished": "nicht abgeschlossen",
+      "completed": "abgeschlossen"
+    },
+    "skillLevels": {
+      "basic": "Grundkenntnisse",
+      "intermediate": "Fortgeschritten",
+      "advanced": "Sehr gut",
+      "expert": "Experte",
+      "master": "Meister"
+    },
+    "languageLevels": {
+      "native": "Muttersprache",
+      "advanced": "fließend"
+    },
+    "languageNames": {
+      "German": "Deutsch",
+      "English": "Englisch",
+      "Spanish": "Spanisch"
+    },
+    "categories": {
+      "programmingLanguages": "Programmier- und Auszeichnungssprachen",
+      "frameworks": "Frameworks und Bibliotheken",
+      "developmentTools": "Entwicklungswerkzeuge",
+      "otherTools": "Weitere Werkzeuge",
+      "methodologies": "Außerdem"
+    },
+    "driverLicense": "Führerschein A & B",
+    "intro": "Berufliche Zusammenfassung",
+    "theme": "Thema",
+    "themeAuto": "Auto",
+    "themeLight": "Hell",
+    "themeDark": "Dunkel",
+    "visitWebsite": "Website besuchen",
+    "technologies": "Technologien"
+  },
+  "es": {
+    "personalInfo": "Información Personal",
+    "workExperience": "Experiencia Laboral",
+    "education": "Educación",
+    "skills": "Habilidades y Competencias Clave",
+    "languages": "Idiomas",
+    "interests": "Intereses y Aficiones",
+    "print": "Imprimir / Descargar PDF",
+    "seeCertificate": "Ver certificado",
+    "born": "Nacido",
+    "single": "soltero",
+    "noChildren": "sin hijos",
+    "remote": "remoto",
+    "onsite": "presencial",
+    "status": {
+      "notFinished": "no finalizado",
+      "completed": "completado"
+    },
+    "skillLevels": {
+      "basic": "Básico",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado",
+      "expert": "Experto",
+      "master": "Maestro"
+    },
+    "languageLevels": {
+      "native": "Lengua Materna",
+      "advanced": "avanzado"
+    },
+    "languageNames": {
+      "German": "Alemán",
+      "English": "Inglés",
+      "Spanish": "Español"
+    },
+    "categories": {
+      "programmingLanguages": "Lenguajes de programación y marcado",
+      "frameworks": "Frameworks y librerías",
+      "developmentTools": "Herramientas de desarrollo",
+      "otherTools": "Otras herramientas",
+      "methodologies": "Además"
+    },
+    "driverLicense": "Licencia de conducir A & B",
+    "intro": "Resumen Profesional",
+    "theme": "Tema",
+    "themeAuto": "Auto",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "visitWebsite": "Visitar sitio web",
+    "technologies": "Tecnologías"
+  }
+}
