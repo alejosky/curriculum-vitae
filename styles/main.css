@@ -406,6 +406,10 @@ cv-work-entry:not(:first-child) {
     border-bottom: 1px solid var(--border-color);
   }
 
+  .personal-info {
+    text-align: left;
+  }
+
   .floating-controls {
     right: 0.5rem;
     padding: 0.5rem 0.25rem;
