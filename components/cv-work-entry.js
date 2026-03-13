@@ -201,6 +201,12 @@ class CvWorkEntry extends HTMLElement {
           line-height: 1;
         }
 
+        @media (min-width: 641px) {
+          .company-line {
+            flex-wrap: wrap;
+          }
+        }
+
         /* Print styles */
         @media print {
           .description-list li {
