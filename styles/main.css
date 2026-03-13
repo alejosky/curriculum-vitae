@@ -137,7 +137,6 @@ h3 {
 
 /* Left column */
 .left-column {
-  text-align: right;
   padding: 0 2rem;
   border-right: 1px solid var(--border-color);
 }
@@ -149,11 +148,6 @@ h3 {
   object-fit: cover;
   display: block;
   margin: -.25rem 0 1.5rem;
-  float: right;
-}
-
-.signature-image {
-  float: right;
 }
 
 /* Personal name heading */
@@ -180,6 +174,7 @@ section h2 {
   text-decoration: underline;
   color: var(--text-secondary);
 }
+
 .language-name {
   font-weight: 600;
   color: var(--text-primary);
@@ -349,11 +344,25 @@ cv-work-entry:not(:first-child) {
   border-radius: 1px 1px 0 0;
 }
 
-.tacho-bar:nth-child(1) { height: 6px; }
-.tacho-bar:nth-child(2) { height: 8px; }
-.tacho-bar:nth-child(3) { height: 10px; }
-.tacho-bar:nth-child(4) { height: 13px; }
-.tacho-bar:nth-child(5) { height: 16px; }
+.tacho-bar:nth-child(1) {
+  height: 6px;
+}
+
+.tacho-bar:nth-child(2) {
+  height: 8px;
+}
+
+.tacho-bar:nth-child(3) {
+  height: 10px;
+}
+
+.tacho-bar:nth-child(4) {
+  height: 13px;
+}
+
+.tacho-bar:nth-child(5) {
+  height: 16px;
+}
 
 .tacho-bar.empty {
   background-color: transparent;
@@ -367,7 +376,7 @@ body[data-theme="dark"] .tacho-bar.filled {
 /* Responsive design */
 @media (max-width: 968px) {
   .cv-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .left-column {
@@ -391,6 +400,17 @@ body[data-theme="dark"] .tacho-bar.filled {
   }
 }
 
+@media screen and (min-width: 641px) {
+  .left-column {
+    text-align: right;
+  }
+
+  .signature-image,
+  .profile-photo {
+    float: right;
+  }
+}
+
 @media (max-width: 640px) {
   .cv-container {
     margin: 0;
@@ -400,6 +420,15 @@ body[data-theme="dark"] .tacho-bar.filled {
   .left-column,
   .right-column {
     padding: 1.5rem 1rem;
+  }
+
+  .intro-section h2,
+  .work-section h2,
+  .education-section h2,
+  .skills-section h2 {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
   }
 
   .skills-grid {
@@ -427,6 +456,10 @@ body[data-theme="dark"] .tacho-bar.filled {
     width: 1px;
     height: 20px;
     margin: 0 0.25rem;
+  }
+
+  footer.cv-footer {
+    margin-bottom: 10rem;
   }
 }
 
